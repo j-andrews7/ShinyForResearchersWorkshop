@@ -1,16 +1,15 @@
-Package: BuildABiocWorkshop
-Title: Bioconductor or R Workshop Template and Github Actions
-Version: 2.0.0
+Package: ShinyForScientistsWorkshop
+Title: Shiny For Scientists Workshop
+Version: 0.1.0
 Authors@R: 
-    person(given = "Sean",
-           family = "Davis",
+    person(given = "Jared",
+           family = "Andrews",
            role = c("aut", "cre"),
-           email = "seandavi@gmail.com",
-           comment = c(ORCID = "0000-0002-8991-6458"))
-Description: This package serves as a template for using github actions to 
-    prepare a Bioconductor Workshop package for use. In particular,
-    a pkgdown website and docker image are generated based on workflow 
-    settings. 
+           email = "jared.andrews@stjude.org",
+           comment = c(ORCID = "0000-0002-0780-6248"))
+Description: This package serves as an introduction to Shiny for scientists. 
+    The package contains vignettes explaining the basics of Shiny, use cases, and how to create increasingly complex Shiny apps.
+    It also includes an example for creating functions that generate Shiny apps for running and visualizing principal component analyses, made for embedding in Rmd documents or as a standalone app.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -22,7 +21,7 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown
-URL: https://seandavi.github.io/BuildABiocWorkshop/
-BugReports: https://github.com/seandavi/BuildABiocWorkshop/issues/new/choose
+URL: https://https://j-andrews7.github.io/ShinyForScientistsWorkshop/
+BugReports: https://github.com/j-andrews7/ShinyForScientistsWorkshop/issues/new/choose
 VignetteBuilder: knitr
-DockerImage: ghcr.io/seandavi/buildabiocworkshop:latest
+DockerImage: ghcr.io/j-andrews7/shinyforscientistsworkshop:latest
