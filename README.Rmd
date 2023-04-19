@@ -4,11 +4,11 @@ output: github_document
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
-  fig.path = "inst/figures/"
+  fig.path = "man/figures/"
 )
 ```
 
-# Shiny for Scientists Workshop <img align="right" src="inst/figures/LearningShiny.png" alt="Learning Shiny" width="30%" />
+# Shiny for Scientists Workshop <img align="right" src="man/figures/logo.png" alt="Learning Shiny" width="30%" />
 
 Authors:
     Jared Andrews[^1]
@@ -62,7 +62,7 @@ This workshop utilizes the following packages:
 
 ### Workshop Outline
 
-This workshop was designed to be convered in ~2.5-3 hours and includes 4 hands-on modules:
+This workshop was designed to be covered in ~2.5-3 hours and includes 4 hands-on modules:
 
 | Activity                     | Time |
 |------------------------------|------|
