@@ -1,52 +1,86 @@
-# BuildABiocWorkshop
+# Shiny for Scientists Workshop
 
-This package is a template for building a Bioconductor workshop. The package
-includes Github actions to:
-
-1. Set up bioconductor/bioconductor_docker:devel on Github resources
-2. Install package dependencies for your package (based on the `DESCRIPTION` file)
-3. Run `rcmdcheck::rcmdcheck`
-4. Build a pkgdown website and push it to github pages
-5. Build a docker image with the installed package and dependencies and deploy to [the Github Container Repository](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pulling-container-images) at the name `ghcr.io/gihub_user/repo_name`, all lowercase. 
-
-## Responsibilities
-
-Package authors are primarily responsible for:
-
-1. Creating a landing site of their choosing for their workshops (a website). This website should be listed in the `DESCRIPTION` file as the `URL`.
-2. Creating a docker image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including "tag" if desired, should be listed in a non-standard tag, `DockerImage:` in the `DESCRIPTION` file. 
-
-Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.
-
-## Details
-
-For detailed instructions, see the `How to build a workshop` article/vignette.
-
-## Results of successful deployment
-
-- A working docker image that contains the installed package and dependencies.
-- An up-to-date `pkgdown` website at https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/
-- Docker image will be tagged with `latest`, `sha-XXXXXX` where `XXXXXX` is the hash of the current `master` commit, and `master`. 
-
-## To use the resulting image:
-
-```sh
-docker run -e PASSWORD=<choose_a_password_for_rstudio> -p 8787:8787 YOURDOCKERIMAGENAME
-```
-Once running, navigate to http://localhost:8787/ and then login with `rstudio`:`yourchosenpassword`. 
-
-To try with **this** repository docker image:
-
-```sh
-docker run -e PASSWORD=abc -p 8787:8787 ghcr.io/bioconductor/buildabiocworkshop
-```
-
-*NOTE*: Running docker that uses the password in plain text like above exposes the password to others 
-in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment 
-variable instead of plain text to pass along passwords and other secrets in docker command lines. 
+<img align="right" src="./inst/images/LearningShiny.png" alt="Learning Shiny" width="35%">
 
 
-## Whatcha get
+Authors:
+    Jared Andrews^[St. Jude Children's Research Hospital]
+    <br/>
+Last modified: April 18th, 2023.
 
-- https://bioconductor.github.io/BuildABiocWorkshop
-- A Docker image that you can run locally, in the cloud, or (usually) even as a singularity container on HPC systems. 
+## Overview
+
+### Description
+
+This workshop is designed to introduce participants to the basics of R Shiny, a web application framework for R. 
+Shiny is a powerful tool that can be used to create interactive, re-usable, and shareable web applications that can be used to explore and visualize data, and to create interactive reports. 
+In particular, this curriculum is geared towards scientists and bioinformaticians to emphasize how Shiny can streamline common analyses, figure generation, and empower bench scientists to explore and interpret their data.
+Shiny can be _more_ than a way for scientists to dig through data - it can be a powerful framework for expert bioinformaticians to streamline figure generation and interpretation they're doing themselves.
+
+### Pre-requisites
+
+This workshop expects participants to have:
+
+- Basic knowledge of R syntax
+- Basic familiarity with the RStudio IDE
+
+### Additional Reading
+
+While it's not necessary to read these resources before the workshop, they may be helpful for those interested in learning more about Shiny:
+
+- [Shiny Basics](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
+- [Mastering Shiny](https://mastering-shiny.org/)
+
+For more advanced users interested in packaging and sharing their Shiny apps as an R package, see:
+
+- [R Packages](https://r-pkgs.org/)
+
+### Participation
+
+This workshop is designed as an instructor-led, hybrid-format experience. 
+The material will remain available online for self-paced learning indefinitely.
+
+### _R_ / _Bioconductor_ Packages Used
+
+This workshop utilizes the following packages:
+
+- [shiny](https://shiny.rstudio.com/)
+- [shinydashboard](https://rstudio.github.io/shinydashboard/)
+- [ggplot2](https://ggplot2.tidyverse.org/)
+- [plotly](https://plotly.com/r/)
+- [PCAtools](https://bioconductor.org/packages/release/bioc/html/PCAtools.html)
+- [shinyjqui](https://cran.r-project.org/web/packages/shinyjqui/index.html)
+- [shinyBS](https://cran.r-project.org/web/packages/shinyBS/index.html)
+
+### Workshop Outline
+
+This workshop was designed to be convered in ~2.5-3 hours and includes 4 hands-on modules:
+
+| Activity                     | Time |
+|------------------------------|------|
+| Core Shiny Concepts                     | 30m  |
+| Basic App Development         | 30m  |
+| Adding Complexity, Interactivity, and Generalizing an App | 90m   |
+| Debugging Shiny, Common Gotchas, and Deployment Options               | 30m  |
+
+### Learning Goals
+
+The goals of this workshop are for participants to:
+
+1.	Recognize how interactive, re-usable tooling can help them work more efficiently and effectively.
+2.	Understand how such tooling can empower laboratory scientists to better understand and investigate their data to derive meaningful insights.
+3.	Gain a strong foundational knowledge of basic R Shiny functionality and development that they can incorporate into their own work.
+
+
+### Learning Objectives
+
+By the end of this workshop, participants should have:
+
+- Basic experience with varied Shiny input/output types.
+- The ability to create interactive plots via plotly and allow real-time user-customization of plot aesthetics/content.
+- An idea as to how to develop an increasingly complex Shiny application to run & explore PCA results.
+- The ability to package Shiny applications as re-usable R functions.
+
+### Usage
+
+Anyone is free to use this content for their own uses with proper attribution (link back to this repo/site).

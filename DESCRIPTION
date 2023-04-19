@@ -33,7 +33,7 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown
-URL: https://https://j-andrews7.github.io/ShinyForScientistsWorkshop/
+URL: https://https://j-andrews7.github.io/ShinyForScientistsWorkshop/, https://github.com/j-andrews7/ShinyForScientistsWorkshop
 BugReports: https://github.com/j-andrews7/ShinyForScientistsWorkshop/issues/new/choose
 VignetteBuilder: knitr
 DockerImage: ghcr.io/j-andrews7/shinyforscientistsworkshop:latest
