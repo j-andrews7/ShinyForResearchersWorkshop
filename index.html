@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ShinyForScientistsWorkshop • ShinyForScientistsWorkshop</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -55,7 +55,7 @@
       <a href="articles/HOWTO_BUILD_WORKSHOP.html">How To Build A Workshop Package</a>
     </li>
     <li>
-      <a href="articles/workshop_example.html">An Example Workshop</a>
+      <a href="articles/workshop_example.html">Shiny for Scientists Workshop</a>
     </li>
   </ul>
 </li>
@@ -79,61 +79,130 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
 <div class="section level1">
-<div class="page-header"><h1 id="buildabiocworkshop">BuildABiocWorkshop<a class="anchor" aria-label="anchor" href="#buildabiocworkshop"></a>
+<div class="page-header"><h1 id="shiny-for-scientists-workshop">Shiny for Scientists Workshop<a class="anchor" aria-label="anchor" href="#shiny-for-scientists-workshop"></a>
 </h1></div>
-<p>This package is a template for building a Bioconductor workshop. The package includes Github actions to:</p>
-<ol style="list-style-type: decimal">
-<li>Set up bioconductor/bioconductor_docker:devel on Github resources</li>
-<li>Install package dependencies for your package (based on the <code>DESCRIPTION</code> file)</li>
-<li>Run <code><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck::rcmdcheck</a></code>
-</li>
-<li>Build a pkgdown website and push it to github pages</li>
-<li>Build a docker image with the installed package and dependencies and deploy to <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pulling-container-images" class="external-link">the Github Container Repository</a> at the name <code>ghcr.io/gihub_user/repo_name</code>, all lowercase.</li>
-</ol>
+<p><img align="right" src="./inst/images/LearningShiny.png" alt="Learning Shiny" width="35%"></p>
+<p>Authors: Jared Andrews<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <br> Last modified: April 18th, 2023.</p>
 <div class="section level2">
-<h2 id="responsibilities">Responsibilities<a class="anchor" aria-label="anchor" href="#responsibilities"></a>
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>Package authors are primarily responsible for:</p>
-<ol style="list-style-type: decimal">
-<li>Creating a landing site of their choosing for their workshops (a website). This website should be listed in the <code>DESCRIPTION</code> file as the <code>URL</code>.</li>
-<li>Creating a docker image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including “tag” if desired, should be listed in a non-standard tag, <code>DockerImage:</code> in the <code>DESCRIPTION</code> file.</li>
-</ol>
-<p>Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.</p>
+<div class="section level3">
+<h3 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
+</h3>
+<p>This workshop is designed to introduce participants to the basics of R Shiny, a web application framework for R. Shiny is a powerful tool that can be used to create interactive, re-usable, and shareable web applications that can be used to explore and visualize data, and to create interactive reports. In particular, this curriculum is geared towards scientists and bioinformaticians to emphasize how Shiny can streamline common analyses, figure generation, and empower bench scientists to explore and interpret their data. Shiny can be <em>more</em> than a way for scientists to dig through data - it can be a powerful framework for expert bioinformaticians to streamline figure generation and interpretation they’re doing themselves.</p>
 </div>
-<div class="section level2">
-<h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
-</h2>
-<p>For detailed instructions, see the <code>How to build a workshop</code> article/vignette.</p>
-</div>
-<div class="section level2">
-<h2 id="results-of-successful-deployment">Results of successful deployment<a class="anchor" aria-label="anchor" href="#results-of-successful-deployment"></a>
-</h2>
+<div class="section level3">
+<h3 id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
+</h3>
+<p>This workshop expects participants to have:</p>
 <ul>
-<li>A working docker image that contains the installed package and dependencies.</li>
-<li>An up-to-date <code>pkgdown</code> website at <a href="https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/" class="external-link uri">https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/</a>
-</li>
-<li>Docker image will be tagged with <code>latest</code>, <code>sha-XXXXXX</code> where <code>XXXXXX</code> is the hash of the current <code>master</code> commit, and <code>master</code>.</li>
+<li>Basic knowledge of R syntax</li>
+<li>Basic familiarity with the RStudio IDE</li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="to-use-the-resulting-image">To use the resulting image:<a class="anchor" aria-label="anchor" href="#to-use-the-resulting-image"></a>
-</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>choose_a_password_for_rstudio<span class="op">&gt;</span> -p 8787:8787 YOURDOCKERIMAGENAME</span></code></pre></div>
-<p>Once running, navigate to <a href="http://localhost:8787/" class="external-link uri">http://localhost:8787/</a> and then login with <code>rstudio</code>:<code>yourchosenpassword</code>.</p>
-<p>To try with <strong>this</strong> repository docker image:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=abc <span class="at">-p</span> 8787:8787 ghcr.io/bioconductor/buildabiocworkshop</span></code></pre></div>
-<p><em>NOTE</em>: Running docker that uses the password in plain text like above exposes the password to others in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment variable instead of plain text to pass along passwords and other secrets in docker command lines.</p>
-</div>
-<div class="section level2">
-<h2 id="whatcha-get">Whatcha get<a class="anchor" aria-label="anchor" href="#whatcha-get"></a>
-</h2>
+<div class="section level3">
+<h3 id="additional-reading">Additional Reading<a class="anchor" aria-label="anchor" href="#additional-reading"></a>
+</h3>
+<p>While it’s not necessary to read these resources before the workshop, they may be helpful for those interested in learning more about Shiny:</p>
 <ul>
-<li><a href="https://bioconductor.github.io/BuildABiocWorkshop" class="external-link uri">https://bioconductor.github.io/BuildABiocWorkshop</a></li>
-<li>A Docker image that you can run locally, in the cloud, or (usually) even as a singularity container on HPC systems.</li>
+<li><a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/" class="external-link">Shiny Basics</a></li>
+<li><a href="https://mastering-shiny.org/" class="external-link">Mastering Shiny</a></li>
+</ul>
+<p>For more advanced users interested in packaging and sharing their Shiny apps as an R package, see:</p>
+<ul>
+<li><a href="https://r-pkgs.org/" class="external-link">R Packages</a></li>
 </ul>
 </div>
+<div class="section level3">
+<h3 id="participation">Participation<a class="anchor" aria-label="anchor" href="#participation"></a>
+</h3>
+<p>This workshop is designed as an instructor-led, hybrid-format experience. The material will remain available online for self-paced learning indefinitely.</p>
 </div>
+<div class="section level3">
+<h3 id="r--bioconductor-packages-used">
+<em>R</em> / <em>Bioconductor</em> Packages Used<a class="anchor" aria-label="anchor" href="#r--bioconductor-packages-used"></a>
+</h3>
+<p>This workshop utilizes the following packages:</p>
+<ul>
+<li><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></li>
+<li><a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a></li>
+<li><a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a></li>
+<li><a href="https://plotly.com/r/" class="external-link">plotly</a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/PCAtools.html" class="external-link">PCAtools</a></li>
+<li><a href="https://cran.r-project.org/web/packages/shinyjqui/index.html" class="external-link">shinyjqui</a></li>
+<li><a href="https://cran.r-project.org/web/packages/shinyBS/index.html" class="external-link">shinyBS</a></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="workshop-outline">Workshop Outline<a class="anchor" aria-label="anchor" href="#workshop-outline"></a>
+</h3>
+<p>This workshop was designed to be convered in ~2.5-3 hours and includes 4 hands-on modules:</p>
+<table class="table">
+<colgroup>
+<col width="83%">
+<col width="16%">
+</colgroup>
+<thead><tr class="header">
+<th>Activity</th>
+<th>Time</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Core Shiny Concepts</td>
+<td>30m</td>
+</tr>
+<tr class="even">
+<td>Basic App Development</td>
+<td>30m</td>
+</tr>
+<tr class="odd">
+<td>Adding Complexity, Interactivity, and Generalizing an App</td>
+<td>90m</td>
+</tr>
+<tr class="even">
+<td>Debugging Shiny, Common Gotchas, and Deployment Options</td>
+<td>30m</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="learning-goals">Learning Goals<a class="anchor" aria-label="anchor" href="#learning-goals"></a>
+</h3>
+<p>The goals of this workshop are for participants to:</p>
+<ol style="list-style-type: decimal">
+<li>Recognize how interactive, re-usable tooling can help them work more efficiently and effectively.</li>
+<li>Understand how such tooling can empower laboratory scientists to better understand and investigate their data to derive meaningful insights.</li>
+<li>Gain a strong foundational knowledge of basic R Shiny functionality and development that they can incorporate into their own work.</li>
+</ol>
+</div>
+<div class="section level3">
+<h3 id="learning-objectives">Learning Objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a>
+</h3>
+<p>By the end of this workshop, participants should have:</p>
+<ul>
+<li>Basic experience with varied Shiny input/output types.</li>
+<li>The ability to create interactive plots via plotly and allow real-time user-customization of plot aesthetics/content.</li>
+<li>An idea as to how to develop an increasingly complex Shiny application to run &amp; explore PCA results.</li>
+<li>The ability to package Shiny applications as re-usable R functions.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h3>
+<p>Anyone is free to use this content for their own uses with proper attribution (link back to this repo/site).</p>
+</div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="fn1"><p>St. Jude Children’s Research Hospital<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -148,8 +217,9 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
 
