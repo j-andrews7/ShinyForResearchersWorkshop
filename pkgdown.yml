@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   HOWTO_BUILD_WORKSHOP: HOWTO_BUILD_WORKSHOP.html
   workshop_example: workshop_example.html
-last_built: 2023-04-19T19:44Z
+last_built: 2023-04-19T20:31Z
 urls:
   reference: https://j-andrews7.github.io/ShinyForScientistsWorkshop/reference
   article: https://j-andrews7.github.io/ShinyForScientistsWorkshop/articles
