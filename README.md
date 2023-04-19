@@ -1,5 +1,5 @@
 
-# Shiny for Scientists Workshop <img align="right" src="man/figures/LearningShiny.png" alt="Learning Shiny" width="25%" />
+# Shiny for Scientists Workshop <img align="right" src="inst/figures/LearningShiny.png" alt="Learning Shiny" width="30%" />
 
 Authors: Jared Andrews[^1] <br/> Last modified: April 19th, 2023.
 

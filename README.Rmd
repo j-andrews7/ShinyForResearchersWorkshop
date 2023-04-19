@@ -2,16 +2,13 @@
 output: github_document
 ---
 
-```{r, echo = FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/"
+  fig.path = "inst/figures/"
 )
 ```
 
-# Shiny for Scientists Workshop <img align="right" src="man/figures/LearningShiny.png" alt="Learning Shiny" width="30%" />
-
+# Shiny for Scientists Workshop <img align="right" src="inst/figures/LearningShiny.png" alt="Learning Shiny" width="30%" />
 
 Authors:
     Jared Andrews[^1]
