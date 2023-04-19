@@ -1,12 +1,12 @@
 # Shiny for Scientists Workshop
 
-<img align="right" src="./inst/images/LearningShiny.png" alt="Learning Shiny" width="35%">
+<img align="right" src="inst/images/LearningShiny.png" alt="Learning Shiny" width="40%">
 
 
 Authors:
-    Jared Andrews^[St. Jude Children's Research Hospital]
+    Jared Andrews[^1]
     <br/>
-Last modified: April 18th, 2023.
+Last modified: April 19th, 2023.
 
 ## Overview
 
@@ -15,6 +15,7 @@ Last modified: April 18th, 2023.
 This workshop is designed to introduce participants to the basics of R Shiny, a web application framework for R. 
 Shiny is a powerful tool that can be used to create interactive, re-usable, and shareable web applications that can be used to explore and visualize data, and to create interactive reports. 
 In particular, this curriculum is geared towards scientists and bioinformaticians to emphasize how Shiny can streamline common analyses, figure generation, and empower bench scientists to explore and interpret their data.
+
 Shiny can be _more_ than a way for scientists to dig through data - it can be a powerful framework for expert bioinformaticians to streamline figure generation and interpretation they're doing themselves.
 
 ### Pre-requisites
@@ -84,3 +85,5 @@ By the end of this workshop, participants should have:
 ### Usage
 
 Anyone is free to use this content for their own uses with proper attribution (link back to this repo/site).
+
+[^1]: St. Jude Children's Research Hospital
