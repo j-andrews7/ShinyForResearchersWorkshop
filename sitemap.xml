@@ -7,15 +7,6 @@
     <loc>https://j-andrews7.github.io/ShinyForScientistsWorkshop/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://j-andrews7.github.io/ShinyForScientistsWorkshop/articles/HOWTO_BUILD_WORKSHOP.html</loc>
-  </url>
-  <url>
-    <loc>https://j-andrews7.github.io/ShinyForScientistsWorkshop/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://j-andrews7.github.io/ShinyForScientistsWorkshop/articles/workshop_example.html</loc>
-  </url>
-  <url>
     <loc>https://j-andrews7.github.io/ShinyForScientistsWorkshop/authors.html</loc>
   </url>
   <url>
@@ -23,5 +14,8 @@
   </url>
   <url>
     <loc>https://j-andrews7.github.io/ShinyForScientistsWorkshop/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://j-andrews7.github.io/ShinyForScientistsWorkshop/reference/shinyHist.html</loc>
   </url>
 </urlset>
