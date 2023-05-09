@@ -1,7 +1,7 @@
 
-# Shiny for Scientists Workshop <img align="right" src="man/figures/logo.png" alt="Learning Shiny" width="30%" />
+# Shiny for Scientists Workshop <img align="right" src="man/figures/logo.png" alt="Learning Shiny" width="150" />
 
-Authors: Jared Andrews[^1] <br/> Last modified: April 19th, 2023.
+Authors: Jared Andrews[^1] <br/> Last modified: May 8th, 2023.
 
 ## Overview
 
@@ -13,7 +13,7 @@ can be used to create interactive, re-usable, and shareable web
 applications that can be used to explore and visualize data, and to
 create interactive reports. In particular, this curriculum is geared
 towards scientists and bioinformaticians to emphasize how Shiny can
-streamline common analyses, figure generation, and empower bench
+streamline common analyses and figure generation, and empower bench
 scientists to explore and interpret their data.
 
 Shiny can be *more* than a way for scientists to dig through data - it
@@ -36,10 +36,12 @@ they may be helpful for those interested in learning more about Shiny:
   Basics](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
 - [Mastering Shiny](https://mastering-shiny.org/)
 
-For more advanced users interested in packaging and sharing their Shiny
-apps as an R package, see:
+For more advanced users, see:
 
-- [R Packages](https://r-pkgs.org/)
+- [R Packages](https://r-pkgs.org/) - For packaging and sharing their
+  Shiny apps as an R package.
+- [shinytest2](https://rstudio.github.io/shinytest2/) - For writing
+  tests for Shiny apps.
 
 ### Participation
 
@@ -61,8 +63,8 @@ This workshop utilizes the following packages:
 
 ### Workshop Outline
 
-This workshop was designed to be convered in \~2.5-3 hours and includes
-4 hands-on modules:
+This workshop was designed to be covered in \~2.5-3 hours and includes 4
+hands-on modules:
 
 | Activity                                                  | Time |
 |-----------------------------------------------------------|------|

@@ -1,0 +1,59 @@
+---
+title: "Basic Shiny Concepts"
+author: 
+- name: "Jared Andrews"
+  email: jared.andrews@stjude.org
+  affiliation: St. Jude Children's Research Hospital, Memphis, TN
+date: "May 8th, 2023"
+output: 
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_depth: 5
+    toc_float: true	 
+runtime: shiny
+vignette: >
+  %\VignetteIndexEntry{Basic Shiny Concepts}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+
+```{r, echo=TRUE}
+sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+plotOutput("distPlot")
+```
+
+```{r, context="server"}
+output$distPlot <- renderPlot({
+  x <- faithful[, 2]  # Old Faithful Geyser data
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  hist(x, breaks = bins, col = 'darkgray', border = 'white')
+})
+```
+
+## An Introduction to Reactivity
+
+Reactivity in R Shiny refers to the automatic updating of output elements or "reactive" expressions in response to changes in input elements or reactive expressions, 
+creating a dynamic and interactive user experience. 
+In short, change one thing and other things change automatically.
+This allows the app to automatically recompute and display updated results without manual intervention or page refreshes.
+
+The concept of reactivity is central to Shiny, and is what makes it so powerful.
+It is important to understand how it works in order to create robust, performant, and flexible Shiny apps.
+The following sections will introduce the basic concepts of reactivity in Shiny, and will hopefully help you understand how to use it in your own apps.
+
+If after the next few sections, you feel wildly confused rather than enlightened, don't worry too much.
+This is a complex topic, and it takes time to wrap your head around it.
+As is often the case, it will come with practice and by applying the concepts to your own apps.
+
+
+### The Reactive Graph
+
+The first thing to understand is that Shiny apps are built on a reactive graph.
+This is a directed acyclic graph (DAG) that describes the relationships between the various inputs, outputs, and reactive expressions in the app.
+The graph is created when the app is launched, and is updated as the app runs.
+The graph is used to determine which outputs and reactive expressions need to be updated when an input or reactive expression changes.
+This is done by traversing the graph from the input or reactive expression that changed, and updating all downstream outputs and reactive expressions.
+This is the essence of reactivity in Shiny.
