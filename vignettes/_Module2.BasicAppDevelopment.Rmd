@@ -1,0 +1,77 @@
+---
+title: "Module 2 - Basic App Development"
+author: 
+- name: "Jared Andrews"
+  email: jared.andrews@stjude.org
+  affiliation: St. Jude Children's Research Hospital, Memphis, TN
+date: "May 12th, 2023"
+output: 
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 5
+    toc_float: true	 
+runtime: shiny
+vignette: >
+  %\VignetteIndexEntry{Basic App Development}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{css, echo=FALSE}
+// This is a CSS code chunk to make the page wider, as the default width is annoyingly narrow.
+body {
+  max-width: 1850px !important;
+}
+div.main-container {
+  max-width: 1850px !important;
+  width: 1850px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.toc-content {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-left: 300px;
+  max-width: 1550px !important;
+  width: 1550px !important;
+}
+```
+
+## UI Design and Application Planning
+
+**St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/).** Must be connected the the St. Jude network to view.
+
+Before starting to code your Shiny app, it's important to sketch out the UI and think about how your data will be used. 
+This allows you to design the app in a way that best meets your users' needs.
+
+For instance, if we're designing a Shiny app to explore the iris dataset, we might want to allow users to:
+
+- Select which variables to plot on the x and y axes
+- Choose the type of plot (scatterplot, histogram, etc.)
+- Color the points by species
+
+Given these needs, we can sketch out a UI that includes select inputs for the x and y variables, 
+the plot type, and the color, as well as a main panel for displaying the plot.
+
+### This Ain't Art Class, Can't We Get to the Code Already?
+
+In time, young padawan. In time. Like 5 minutes, seriously.
+
+Without planning, you end up creating more work for yourself down the line in the form of unnecessary rewrites, buggy interactions, and confusing layouts.
+
+Here are some of the bad things that *will eventually happen* if you don't get in the habit of planning your applications out:
+
+- **Adding Features Without Prior Planning**: Let's say you initially design your app to display a scatter plot of two variables from the iris dataset, and you later decide to add the option for users to display a histogram of a single variable. Because these two plot types require different inputs (a single variable for the histogram vs. two variables for the scatter plot), you may have to substantially rewrite your UI and server code to handle this new functionality. If you had planned for this feature from the start, you could have designed your UI and server in a way that accommodates both plot types, saving you time and effort.
+
+- **Failure to Consider Data Structure**: Suppose your Shiny app is designed around the iris dataset, which is well-structured and doesn't contain any missing values. If you then decide to use a different dataset that contains missing values or a different structure, you may have to rewrite parts of your app to handle these differences. Proper planning involves considering the structure and peculiarities of your data, which can help you write more robust code that can handle different types of data.
+
+- **Not Anticipating User Inputs**: It's important to design your Shiny app in a way that anticipates a wide range of user inputs. For example, if your app includes a text input where users can enter a title for a plot, you might not initially consider that users could enter very long titles that disrupt the layout of your app. If you don't plan for this possibility, you might have to go back and add code to handle it, such as by truncating long titles or adjusting the layout to accommodate them.
+
+- **Complex UI without Logical Layout**: Without proper planning, you might end up with a UI that has a variety of widgets (sliders, checkboxes, dropdowns) without a logical layout, which can make the app difficult for users to navigate. You might then have to spend extra time rearranging and reorganizing your UI. However, if you had sketched out your UI beforehand and considered how users will interact with your app, you could have designed a logical, user-friendly layout from the start.
+
+Slow is smooth, but smooth becomes fast. Or move fast and break things. Whatever, just plan your app. 
+
+### An Illustrative Example
+
+
