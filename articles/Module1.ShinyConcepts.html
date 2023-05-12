@@ -57,7 +57,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/ShinyConcepts.html">Module 1 - Basic Shiny Concepts</a>
+      <a href="../articles/Module1.ShinyConcepts.html">Module 1 - Basic Shiny Concepts</a>
     </li>
   </ul>
 </li>
@@ -95,8 +95,8 @@ TN<br><a class="author_email" href="mailto:#"></a><a href="mailto:jared.andrews@
                   
             <h4 data-toc-skip class="date">May 11th, 2023</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop/blob/HEAD/vignettes/ShinyConcepts.Rmd" class="external-link"><code>vignettes/ShinyConcepts.Rmd</code></a></small>
-      <div class="hidden name"><code>ShinyConcepts.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop/blob/HEAD/vignettes/Module1.ShinyConcepts.Rmd" class="external-link"><code>vignettes/Module1.ShinyConcepts.Rmd</code></a></small>
+      <div class="hidden name"><code>Module1.ShinyConcepts.Rmd</code></div>
 
     </div>
 
@@ -124,6 +124,9 @@ div.main-container {
 <div class="section level2">
 <h2 id="section-why-shiny">Why Shiny?<a class="anchor" aria-label="anchor" href="#section-why-shiny"></a>
 </h2>
+<p><strong>St. Jude members may view <a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/" class="external-link">an
+interactive form of this document here</a>.</strong> Must be connected
+the the St. Jude network to view.</p>
 <p>Shiny is a powerful R package developed by RStudio (now called Posit)
 that allows users to create interactive web applications directly in R.
 It allows development of apps that can process, analyze, and visualize
@@ -137,7 +140,7 @@ outputs automatically.</p></li>
 <li><p><strong>Flexible UI</strong>: Shiny provides a range of layout
 and UI elements out of the box, but also allows for extensive
 customization with HTML, CSS, and JavaScript if desired. Many additional
-packages are available to extend Shiny’s capabilities, like <a href="">shinydashboard</a>, <a href="">shinythemes</a>, <a href="">shinyjs</a>, and <a href="">shinyWidgets</a>.</p></li>
+packages are available to extend Shiny’s capabilities, like <a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>, <a href="https://rstudio.github.io/shinythemes/" class="external-link">shinythemes</a>, <a href="https://deanattali.com/shinyjs/" class="external-link">shinyjs</a>, and <a href="https://shinyapps.dreamrs.fr/shinyWidgets/" class="external-link">shinyWidgets</a>.</p></li>
 <li><p><strong>Full R integration</strong>: Shiny apps are fully
 integrated with R, which means they can use any R package, function, or
 data structure.</p></li>
@@ -239,7 +242,6 @@ bit.</p>
 <code><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp()</a></code> function to create a Shiny app:</p>
 <div class="sourceCode" id="section-cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<iframe data-deferred-src="app34e95bc3adb5c8384aa4a337b21725f7/?w=&amp;__subapp__=1" width="100%" height="500" class="shiny-frame shiny-frame-deferred"></iframe>
 <p>This is the basic structure of a Shiny application. Not so bad,
 eh?</p>
 <p>As we move forward with the workshop, we’ll see how we can add more
@@ -252,6 +254,10 @@ features and functionality to this basic structure.</p>
 <p>Shiny applications are built using a variety of functions provided by
 the Shiny package. Here, we’ll cover some of the most basic and commonly
 used functions as a primer for building your own applications.</p>
+<p>Note these are only a small fraction of the inputs, outputs, and
+reactivity functions available in Shiny. For a more comprehensive list,
+see the <a href="https://shiny.posit.co/r/reference/shiny/latest/" class="external-link">Shiny
+Reference Guide</a>.</p>
 <div class="section level3">
 <h3 id="section-ui-layout-functions">UI Layout Functions<a class="anchor" aria-label="anchor" href="#section-ui-layout-functions"></a>
 </h3>
@@ -300,10 +306,10 @@ tables.</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="section-reactive-functions">Reactive Functions<a class="anchor" aria-label="anchor" href="#section-reactive-functions"></a>
+<h3 id="section-rendering-functions">Rendering Functions<a class="anchor" aria-label="anchor" href="#section-rendering-functions"></a>
 </h3>
-<p>These functions are used on the server side to perform computations
-and create reactive elements.</p>
+<p>These functions are used on the server side to render elements that
+are shown in the UI.</p>
 <ul>
 <li><p><code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot()</a></code>: This function is used to create a
 reactive plot that automatically updates when any of its inputs
@@ -312,8 +318,27 @@ change.</p></li>
 reactive table that automatically updates when any of its inputs
 change.</p></li>
 </ul>
+</div>
+<div class="section level3">
+<h3 id="section-reactive-functions">Reactive Functions<a class="anchor" aria-label="anchor" href="#section-reactive-functions"></a>
+</h3>
+<p>These functions are used to create and handle reactive elements that
+automatically update when any of their inputs change.</p>
+<ul>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive()</a></code>: This function is used to create a
+reactive expression that can be used to generate reactive
+values.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/reactiveValues.html" class="external-link">reactiveValues()</a></code>: This function is used to create a
+list of reactive values that can be used to store and update
+values.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe()</a></code>: This function is used to create a
+reactive expression that can be used to generate reactive values, but
+unlike <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive()</a></code>, it does not return a value. It is used
+to perform side effects such as updating a reactive value based on user
+input.</p></li>
+</ul>
 <p>Here’s an example of a slightly more complex Shiny application using
-these functions:</p>
+some of these functions:</p>
 <div class="sourceCode" id="section-cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define UI</span></span>
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
@@ -370,7 +395,6 @@ these functions:</p>
 <span></span>
 <span><span class="co"># Run the Shiny app</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<iframe data-deferred-src="app2b6e4c620fa829974de50eb998b3c7be/?w=&amp;__subapp__=1" width="100%" height="550" class="shiny-frame shiny-frame-deferred"></iframe>
 <p>In this enhanced version of the app, the user can control the number
 of observations and the means of two sets of data through sliders.</p>
 <p>The app produces two plots: a histogram of random normal data (like
@@ -518,7 +542,6 @@ now, shall we?</p>
 <span></span>
 <span><span class="co"># Run the Shiny app</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<iframe data-deferred-src="appb9e14efc73a7d5543ed090ed35fc9bb4/?w=&amp;__subapp__=1" width="100%" height="550" class="shiny-frame shiny-frame-deferred"></iframe>
 <p>Play with the color of the points in the scatterplot. Do you notice
 any <strong>potentially unwanted behavior</strong> when you change the
 color?</p>
@@ -613,7 +636,6 @@ input (<code>input$col</code>) changes.</p>
 <span></span>
 <span><span class="co"># Run the Shiny app, using the same UI as before.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<iframe data-deferred-src="app20c3085df95d956f4e7050b21e7562d7/?w=&amp;__subapp__=1" width="100%" height="550" class="shiny-frame shiny-frame-deferred"></iframe>
 <p>Now, when the color is changed, the scatterplot is re-rendered, but
 the data isn’t regenerated because it’s not a direct dependency of the
 color input.</p>
@@ -741,7 +763,6 @@ Click for solution
 <span>            <span class="op">)</span></span>
 <span>        <span class="op">)</span>,</span>
 <span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html" class="external-link">mainPanel</a></span><span class="op">(</span></span>
-<span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"histPlot"</span><span class="op">)</span>,</span>
 <span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"scatterPlot"</span><span class="op">)</span></span>
 <span>        <span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
@@ -769,12 +790,11 @@ Click for solution
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># Run the Shiny app</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<iframe data-deferred-src="appad4419029e2cc30581171f3cb111f056/?w=&amp;__subapp__=1" width="100%" height="550" class="shiny-frame shiny-frame-deferred"></iframe>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">800</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </details><div class="section level3">
 <h3 id="section-too-easy">Too Easy?<a class="anchor" aria-label="anchor" href="#section-too-easy"></a>
 </h3>
-<p>If you found the previous exercise too easy, try adding a new inputs
+<p>If you found the previous exercise too easy, try adding new inputs
 that allow the user to change the x and y-axis labels of the
 scatterplot. Or make both datasets share the same standard
 deviation.</p>
@@ -788,22 +808,23 @@ deviation.</p>
 <li><p><strong>Why Shiny?:</strong> We discussed what Shiny is, its
 applications, and its importance in creating interactive web
 applications with R.</p></li>
-<li><p>Understanding the Structure of a Shiny App: We explained that a
-Shiny app consists of two main parts - a User Interface (UI) and a
-Server function. The UI defines how the app looks and the Server
-function defines how the app behaves. We introduced common Shiny inputs,
-outputs, and layout controls.</p></li>
-<li><p>An Introduction Reactivity: We learned about the concept of
-reactivity, which is the core of Shiny’s interactivity. We discussed how
-reactive expressions and render functions work, and how they are
-triggered to re-execute when their dependencies change.</p></li>
-<li><p>The First Wall: We used an illustrative example to explore some
-of the frustrating aspects of reactivity, such as unintended
-re-computation.</p></li>
-<li><p>Practical Exercise: We carried out an exercise where we enhanced
-a Shiny app by adding new inputs that change aspects of the plot and
-data. This exercise aimed to reinforce understanding of Shiny inputs,
-outputs, and reactivity.</p></li>
+<li><p><strong>Understanding the Structure of a Shiny App:</strong> We
+explained that a Shiny app consists of two main parts - a User Interface
+(UI) and a Server function. The UI defines how the app looks and the
+Server function defines how the app behaves. We introduced common Shiny
+inputs, outputs, and layout controls.</p></li>
+<li><p><strong>An Introduction to Reactivity:</strong> We learned about
+the concept of reactivity, which is the core of Shiny’s interactivity.
+We discussed how reactive expressions and render functions work, and how
+they are triggered to re-execute when their dependencies
+change.</p></li>
+<li><p><strong>The First Wall:</strong> We used an illustrative example
+to explore some of the frustrating aspects of reactivity, such as
+unintended re-computation.</p></li>
+<li><p><strong>Practical Exercise:</strong> We carried out an exercise
+where we enhanced a Shiny app by adding new inputs that change aspects
+of the plot and data. This exercise aimed to reinforce understanding of
+Shiny inputs, outputs, and reactivity.</p></li>
 </ul>
 <p>By the end of this module, participants should have a basic
 understanding of Shiny’s core concepts and a general idea of how a Shiny
