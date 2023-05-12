@@ -15,20 +15,8 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Depends: 
-    Biobase,
-    shinyBS
 Imports:
-    ggplot2,
-    plotly,
-    shiny,
-    shinydashboard,
-    shinyWidgets,
-    dashboardthemes,
-    shinyjqui,
-    shinyjs,
-    PCAtools,
-    stats
+    shiny
 Suggests: 
     knitr,
     rmarkdown,
