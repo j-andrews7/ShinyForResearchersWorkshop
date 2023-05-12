@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 Authors:
     Jared Andrews[^1]
     <br/>
-Last modified: May 11th, 2023.
+Last modified: May 12th, 2023.
 
 ## Overview
 
@@ -65,14 +65,17 @@ This workshop utilizes the following packages:
 
 ### Workshop Outline
 
-This workshop was designed to be covered in ~2.5-3 hours and includes 4 hands-on modules:
+This workshop was designed to be covered in ~2.5-3 hours and includes 4 hands-on modules
+(which have interactive documents that can be accessed via the links below for St. Jude members while on the St. Jude network):
 
 | Activity                  | Time |
 |---------------------------|------|
-| Core Shiny Concepts                     | 30m  |
-| Basic App Development         | 30m  |
-| Adding Complexity, Interactivity, and Generalizing an App | 90m   |
-| Debugging Shiny, Common Gotchas, and Deployment Options               | 30m  |
+| [Core Shiny Concepts](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/)                     | 30m  |
+| [Basic Application Development](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/)         | 30m  |
+| [Adding Complexity, Interactivity, and Generalizing an App](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/) | 90m   |
+| [Debugging Shiny, Common Gotchas, and Deployment Options](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/)               | 30m  |
+
+
 
 ### Learning Goals
 

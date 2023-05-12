@@ -1,7 +1,7 @@
 
 # Shiny for Scientists Workshop <img align="right" src="man/figures/logo.png" alt="Learning Shiny" width="150" />
 
-Authors: Jared Andrews[^1] <br/> Last modified: May 8th, 2023.
+Authors: Jared Andrews[^1] <br/> Last modified: May 12th, 2023.
 
 ## Overview
 
@@ -11,14 +11,13 @@ This workshop is designed to introduce participants to the basics of R
 Shiny, a web application framework for R. Shiny is a powerful tool that
 can be used to create interactive, re-usable, and shareable web
 applications that can be used to explore and visualize data, and to
-create interactive reports. In particular, this curriculum is geared
-towards scientists and bioinformaticians to emphasize how Shiny can
-streamline common analyses and figure generation, and empower bench
-scientists to explore and interpret their data.
+create interactive reports.
 
-Shiny can be *more* than a way for scientists to dig through data - it
-can be a powerful framework for expert bioinformaticians to streamline
-figure generation and interpretation they’re doing themselves.
+In particular, this curriculum is geared towards scientists and
+bioinformaticians to emphasize how Shiny can be *more* than a way for
+scientists to dig through data - it can be a powerful framework for
+expert bioinformaticians to streamline figure generation and
+interpretation they’re doing themselves.
 
 ### Pre-requisites
 
@@ -33,13 +32,23 @@ While it’s not necessary to read these resources before the workshop,
 they may be helpful for those interested in learning more about Shiny:
 
 - [Shiny
-  Basics](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
-- [Mastering Shiny](https://mastering-shiny.org/)
+  Basics](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/) -
+  This is a tutorial on the basics of Shiny.
+- [Mastering Shiny](https://mastering-shiny.org/) - This is a free
+  online book that covers the core aspects of Shiny in-depth.
+- [Shiny
+  Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/shiny.pdf) -
+  A handy cheatsheet for Shiny syntax and functionality.
 
 For more advanced users, see:
 
-- [R Packages](https://r-pkgs.org/) - For packaging and sharing their
-  Shiny apps as an R package.
+- [R Packages](https://r-pkgs.org/) - Additional info for creating an R
+  package.
+- [Engineering Shiny](https://engineering-shiny.org/) - A free book
+  describing intermediate to advanced concepts for production-grade
+  Shiny apps, particularly in terms of app structure. Created with the
+  `golem` package in mind, but many of the concepts are applicable to
+  any Shiny app.
 - [shinytest2](https://rstudio.github.io/shinytest2/) - For writing
   tests for Shiny apps.
 
@@ -64,14 +73,15 @@ This workshop utilizes the following packages:
 ### Workshop Outline
 
 This workshop was designed to be covered in \~2.5-3 hours and includes 4
-hands-on modules:
+hands-on modules (which have interactive documents that can be accessed
+via the links below for St. Jude members while on the St. Jude network):
 
-| Activity                                                  | Time |
-|-----------------------------------------------------------|------|
-| Core Shiny Concepts                                       | 30m  |
-| Basic App Development                                     | 30m  |
-| Adding Complexity, Interactivity, and Generalizing an App | 90m  |
-| Debugging Shiny, Common Gotchas, and Deployment Options   | 30m  |
+| Activity                                                                                                             | Time |
+|----------------------------------------------------------------------------------------------------------------------|------|
+| [Core Shiny Concepts](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/)                                       | 30m  |
+| [Basic Application Development](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/)                             | 30m  |
+| [Adding Complexity, Interactivity, and Generalizing an App](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/) | 90m  |
+| [Debugging Shiny, Common Gotchas, and Deployment Options](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/)   | 30m  |
 
 ### Learning Goals
 

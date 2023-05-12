@@ -4,7 +4,7 @@ author:
 - name: "Jared Andrews"
   email: jared.andrews@stjude.org
   affiliation: St. Jude Children's Research Hospital, Memphis, TN
-date: "May 11th, 2023"
+date: "May 12th, 2023"
 output: 
   html_document:
     code_folding: show
@@ -44,10 +44,12 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ## Why Shiny?
 
-**St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/).** Must be connected the the St. Jude network to view.
+**St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/).** 
+Must be connected to the St. Jude network to view.
 
 Shiny is a powerful R package developed by RStudio (now called Posit) that allows users to create interactive web applications directly in R. 
-It allows development of apps that can process, analyze, and visualize data in real time, without needing to know any HTML, CSS, or JavaScript, although these can be used for more advanced customization.
+It allows development of apps that can process, analyze, and visualize data in real time, without needing to know any HTML, 
+CSS, or JavaScript, although these can be used for more advanced customization.
 
 Shiny has several key features:
 
@@ -181,13 +183,23 @@ adjusts its width to match the size of the browser window, allowing you to arran
 
 - `mainPanel()`: This function is used to create a main panel that usually contains outputs (plots, tables, etc.).
 
-- `Input Functions`: These functions create interactive elements that users can manipulate.
+### Input Functions
+
+These functions create interactive elements that users can manipulate.
 
 - `sliderInput()`: Creates a slider that the user can move to select numerical values.
 
 - `textInput()`: Creates a box where users can enter text.
 
 - `selectInput()`: Creates a dropdown menu from which users can select an option.
+
+- `checkboxInput()`: Creates a checkbox that users can select or deselect.
+
+- `radioButtons()`: Creates a set of radio buttons that users can select from.
+
+- `actionButton()`: Creates a button that users can click to trigger an action.
+
+- `numericInput()`: Creates a numeric selector.
 
 ### Output Functions
 
