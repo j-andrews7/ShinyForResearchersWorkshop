@@ -1,0 +1,667 @@
+---
+title: "Module 1 - Basic Shiny Concepts"
+author: 
+- name: "Jared Andrews"
+  email: jared.andrews@stjude.org
+  affiliation: St. Jude Children's Research Hospital, Memphis, TN
+date: "May 11th, 2023"
+output: 
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 5
+    toc_float: true	 
+runtime: shiny
+vignette: >
+  %\VignetteIndexEntry{Basic Shiny Concepts}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{css, echo=FALSE}
+// This is a CSS code chunk to make the page wider, as the default width is annoyingly narrow.
+body {
+  max-width: 1850px !important;
+}
+div.main-container {
+  max-width: 1850px !important;
+  width: 1850px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.toc-content {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-left: 300px;
+  max-width: 1550px !important;
+  width: 1550px !important;
+}
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+## Why Shiny?
+
+**St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/).** Must be connected the the St. Jude network to view.
+
+Shiny is a powerful R package developed by RStudio (now called Posit) that allows users to create interactive web applications directly in R. 
+It allows development of apps that can process, analyze, and visualize data in real time, without needing to know any HTML, CSS, or JavaScript, although these can be used for more advanced customization.
+
+Shiny has several key features:
+
+- **Reactivity**: This is the cornerstone of Shiny. 
+In essence, a Shiny app reacts to changes in inputs and recalculates outputs automatically.
+
+- **Flexible UI**: Shiny provides a range of layout and UI elements out of the box, but also allows for extensive customization with HTML, CSS, and JavaScript if desired. 
+Many additional packages are available to extend Shiny's capabilities, 
+like [shinydashboard](https://rstudio.github.io/shinydashboard/), [shinythemes](https://rstudio.github.io/shinythemes/), 
+[shinyjs](https://deanattali.com/shinyjs/), and [shinyWidgets](https://shinyapps.dreamrs.fr/shinyWidgets/).
+
+- **Full R integration**: Shiny apps are fully integrated with R, which means they can use any R package, function, or data structure.
+
+- **Simple deployment**: Shiny apps can be easily published on the web through services like shinyapps.io or Posit Connect, or can be run locally and shared through open-source Shiny Server.
+
+During this workshop, we'll be focusing on developing a solid understanding of Shiny's core concepts, as well as the skills to create and deploy your own Shiny apps. 
+By the end of the workshop, you should be able to use Shiny to create interactive visualizations and dashboards using your own data.
+
+Where possible, we will use real-world scientific datasets to make the session more relevant. 
+
+Remember, learning Shiny is not just about writing code, but also about thinking in terms of reactivity. 
+This is a new way of programming for many, and it can take a bit of time to adjust. 
+Don't worry if you don't understand everything immediately - with practice and patience, it will become second nature.
+
+Let's get started with understanding the architecture of a Shiny app.
+
+## Understanding Shiny's Architecture
+
+A Shiny application is essentially a web application. 
+It consists of two key parts: the User Interface (UI), and the Server.
+
+### 1. User Interface (UI)
+
+The UI is the front-end of the application, the part that the user interacts with. 
+It is where the user will input data, and where the results will be displayed.
+
+In Shiny, the UI is defined in R code using functions provided by Shiny. 
+The main function used to create the UI is `fluidPage()`, which sets up a page that can adjust to the size of the browser window. 
+Within the `fluidPage()`, you can add more UI components, such as panels, inputs, and outputs.
+
+A simple example of a UI definition is as follows:
+
+```{r}
+library(shiny)
+
+ui <- fluidPage(
+    titlePanel("My First Shiny App"),
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("bins",
+                "Number of bins:",
+                min = 1,
+                max = 50,
+                value = 30
+            )
+        ),
+        mainPanel(
+            plotOutput("distPlot")
+        )
+    )
+)
+```
+
+In this example, `titlePanel()` is used to add a title to the app, and `sidebarLayout()` is used to add a layout that includes a sidebar and a main panel. 
+The `sidebarPanel()` includes a slider input for number of bins and `mainPanel()` includes a `plotOutput()` which is where the histogram will be displayed.
+
+### 2. Server
+
+The Server is the back-end of the application - it is where the calculations and data manipulations are done. 
+The server function takes input from the UI, performs computations, and sends the results back to the UI.
+
+The server function in Shiny is minimally defined using `function(input, output) { }`. 
+`input` is a list of all the input values from the UI, and `output` is a list of all the output values to send to the UI.
+
+Here's an example of a server function:
+
+```{r}
+server <- function(input, output) {
+    output$distPlot <- renderPlot({
+        x <- faithful$waiting
+        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+        hist(x, breaks = bins, col = "darkgray", border = "white")
+    })
+}
+```
+
+In this example, `output$distPlot` generates a histogram with a number of bins defined by the user through `input$bins`. 
+
+The `renderPlot()` function is used to tell Shiny that this is a reactive context - that is, it should re-run this code whenever any of the inputs change.
+We'll talk more about reactivity in a bit.
+
+### 3. Shiny Application
+
+Once the UI and the server are defined, they can be passed to the `shinyApp()` function to create a Shiny app:
+
+```{r}
+shinyApp(ui = ui, server = server, options = list(height = 500))
+```
+
+This is the basic structure of a Shiny application. 
+Not so bad, eh?
+
+As we move forward with the workshop, we'll see how we can add more features and functionality to this basic structure.
+
+## Introduction to Basic Shiny Syntax 
+
+Shiny applications are built using a variety of functions provided by the Shiny package. 
+Here, we'll cover some of the most basic and commonly used functions as a primer for building your own applications.
+
+Note these are only a small fraction of the inputs, outputs, and reactivity functions available in Shiny. 
+For a more comprehensive list, see the [Shiny Reference Guide](https://shiny.posit.co/r/reference/shiny/latest/).
+
+### UI Layout Functions 
+
+These functions determine the structure and layout of the user interface.
+
+- `fluidPage()`: This function creates a new page with a fluid layout. 
+Fluid layouts automatically adjust to the size of the user's browser window.
+
+- `fluidRow()`: This function creates a container for layout content that automatically 
+adjusts its width to match the size of the browser window, allowing you to arrange elements (like plots, tables, or input widgets) horizontally in a row.
+
+- `column()`: This function creates a column within a row, where you can specify the width 
+(from 1 to 12, representing portions of the total width) and the content of the column, allowing for flexible and responsive grid-based layouts.
+
+- `titlePanel()`: This function is used to add a title to the Shiny application.
+
+- `sidebarLayout()`: This function creates a layout with a sidebar and a main panel.
+
+- `sidebarPanel()`: This function is used to create a sidebar that usually contains input controls.
+
+- `mainPanel()`: This function is used to create a main panel that usually contains outputs (plots, tables, etc.).
+
+- `Input Functions`: These functions create interactive elements that users can manipulate.
+
+- `sliderInput()`: Creates a slider that the user can move to select numerical values.
+
+- `textInput()`: Creates a box where users can enter text.
+
+- `selectInput()`: Creates a dropdown menu from which users can select an option.
+
+### Output Functions
+
+These functions display the output of the computations done on the server side.
+
+- `plotOutput()`: This function is used to display plots.
+
+- `tableOutput()`: This function is used to display tables.
+
+### Rendering Functions
+
+These functions are used on the server side to render elements that are shown in the UI.
+
+- `renderPlot()`: This function is used to create a reactive plot that automatically updates when any of its inputs change.
+
+- `renderTable()`: This function is used to create a reactive table that automatically updates when any of its inputs change.
+
+### Reactive Functions
+
+These functions are used to create and handle reactive elements that automatically update when any of their inputs change.
+
+- `reactive()`: This function is used to create a reactive expression that can be used to generate reactive values.
+
+- `reactiveValues()`: This function is used to create a list of reactive values that can be used to store and update values.
+
+- `observe()`: This function is used to create a reactive expression that can be used to generate reactive values, but unlike `reactive()`, it does not return a value.
+It is used to perform side effects such as updating a reactive value based on user input.
+
+Here's an example of a slightly more complex Shiny application using some of these functions:
+
+```{r}
+# Define UI
+ui <- fluidPage(
+    titlePanel("My Enhanced Shiny App"),
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("obs", "Number of observations",
+                min = 1, max = 100, value = 50
+            ),
+            sliderInput("mean1", "Mean of first dataset",
+                min = -10, max = 10, value = 0
+            ),
+            sliderInput("mean2", "Mean of second dataset",
+                min = -10, max = 10, value = 0
+            ),
+
+            # R has a number of built-in colors that it recognizes
+            # but we could also use hex code for full flexibility!
+            selectInput("col", "Color for points",
+                choices = c("red", "blue", "green"), selected = "red"
+            )
+        ),
+        mainPanel(
+            fluidRow(
+                column(
+                    6,
+                    plotOutput("histPlot")
+                ),
+                column(
+                    6,
+                    plotOutput("scatterPlot")
+                )
+            )
+        )
+    )
+)
+
+# Define Server
+server <- function(input, output) {
+    output$histPlot <- renderPlot({
+        data <- rnorm(input$obs)
+        hist(data, main = "Generated Normal Distribution", xlab = "Data")
+    })
+
+    output$scatterPlot <- renderPlot({
+        data1 <- rnorm(input$obs, mean = input$mean1)
+        data2 <- rnorm(input$obs, mean = input$mean2)
+        plot(data1, data2,
+            col = input$col, main = "Scatterplot with User-Defined Means",
+            xlab = "Data 1", ylab = "Data 2"
+        )
+    })
+}
+
+# Run the Shiny app
+shinyApp(ui = ui, server = server, options = list(height = 550))
+```
+
+In this enhanced version of the app, the user can control the number of observations and the means of two sets of data through sliders. 
+
+The app produces two plots: a histogram of random normal data (like before), and a scatterplot of two sets of random normal data with user-defined means. 
+They can also select the color of the points in the scatterplot from a dropdown menu. 
+
+### A Note on Layout
+
+Note the use of `fluidRow()` and `column()` to create a responsive layout with two plots side-by-side. 
+Column widths are specified as a fraction of the total width of the row, so in this case, each column is 6/12 of the total width, or half the width of the row.
+
+In grid-based responsive web layouts, row widths are always 12 - do not ask me why, I don't control the internet. 
+Just try to keep it in mind. This is the case even if the row is nested within a column that is itself contained within a row. 
+Both rows have a width of 12 despite regardless of the actual amount of the screen they take up.
+
+Confused? 
+Me too. 
+Don't worry, it's not that important. 
+Just remember that columns widths within a row can't add up to more than 12 or things breaks.
+
+### Quick Exercise
+
+Try removing the `fluidRow()` and `column()` functions and re-running the code chunk to see what happens to the layout of the app.
+
+## An Introduction to Reactivity
+
+Reactivity is the **cornerstone of Shiny**. 
+A Shiny application is essentially a reactive programming environment. 
+This means that you can build applications that respond to user inputs without having to write code that explicitly handles these updates.
+
+How reactive elements function can seem opaque at first, but it's actually pretty simple.
+
+### An Example
+
+Let's start with our inital barebones histogram example and walk through its reactive functionality.
+We won't actually run the app - we just want to examine the code to understand how it's using reactivity.
+
+```{r, eval = FALSE}
+# Define UI
+ui <- fluidPage(
+    titlePanel("My Shiny App"),
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("obs", "Number of observations",
+                min = 1, max = 100, value = 50
+            )
+        ),
+        mainPanel(
+            plotOutput("histPlot")
+        )
+    )
+)
+
+# Define Server
+server <- function(input, output) {
+    output$histPlot <- renderPlot({
+        data <- rnorm(input$obs)
+        hist(data, main = "Generated Normal Distribution", xlab = "Data")
+    })
+}
+```
+
+The slider input "obs" in the UI is linked to the `input$obs` in the server function. 
+Whenever the slider is moved by the user, `input$obs` changes its value accordingly.
+
+The magic of Shiny's reactivity comes into play with the `renderPlot()` function in the server. 
+This function is a **reactive context**, which means that it's not only run when the app is launched, but also each time `input$obs` changes.
+
+So, every time the user moves the slider, `input$obs` changes, which triggers `renderPlot()` to re-run, which in turn generates a new histogram with the updated number of observations. 
+This re-running is what we refer to as reactivity.
+
+This reactivity concept is what allows Shiny applications to be dynamic and interactive. 
+Inputs and outputs are automatically kept in sync, so you don't have to write code to manually update outputs when inputs change.
+
+As we move forward in the workshop, we'll see how to harness the power of reactivity to create more complex and interactive Shiny applications.
+
+## The First Wall
+
+More likely than not, your first major frustration with Shiny will stem from reactivity.
+
+The behavior will baffle you, stuff will be updating when you feel like it shouldn't, 
+the app may get stuck in odd loop behaviors, and you'll start to wonder if anyone will notice if you put a hole through the wall next to your desk.
+
+But hey, let's see if we can't just get that out of the way right now, shall we?
+
+
+### An Example
+
+So let's take a look at a basic scatter plot example again:
+
+```{r}
+# Define UI
+ui <- fluidPage(
+    titlePanel("My Enhanced Shiny App"),
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("obs", "Number of observations",
+                min = 1, max = 100, value = 50
+            ),
+            sliderInput("mean1", "Mean of first dataset",
+                min = -10, max = 10, value = 0
+            ),
+            sliderInput("mean2", "Mean of second dataset",
+                min = -10, max = 10, value = 0
+            ),
+            selectInput("col", "Color for points",
+                choices = c("red", "blue", "green"), selected = "red"
+            )
+        ),
+        mainPanel(
+            plotOutput("scatterPlot")
+        )
+    )
+)
+
+# Define Server
+server <- function(input, output) {
+    output$scatterPlot <- renderPlot({
+        data1 <- rnorm(input$obs, mean = input$mean1)
+        data2 <- rnorm(input$obs, mean = input$mean2)
+        plot(data1, data2,
+            col = input$col, main = "Scatterplot with User-Defined Means",
+            xlab = "Data 1", ylab = "Data 2"
+        )
+    })
+}
+
+# Run the Shiny app
+shinyApp(ui = ui, server = server, options = list(height = 550))
+```
+
+Play with the color of the points in the scatterplot. Do you notice any **potentially unwanted behavior** when you change the color?
+
+<details>
+  <summary>Click for Answer</summary>
+    That's right, the actual underlying data changes as well, resulting in a different scatterplot!
+</details> 
+
+#### The Explanation
+
+Understanding how and when to use reactivity can sometimes be tricky, especially when it comes to avoiding unnecessary computations.
+
+In our previous example, we have an input for selecting the color of the points in the scatterplot:
+
+```{r, eval=FALSE}
+selectInput("col", "Color for points",
+    choices = c("red", "blue", "green"), selected = "red"
+)
+```
+
+And our scatterplot output is defined as:
+
+```{r, eval=FALSE}
+output$scatterPlot <- renderPlot({
+    data1 <- rnorm(input$obs, mean = input$mean1)
+    data2 <- rnorm(input$obs, mean = input$mean2)
+    plot(data1, data2,
+        col = input$col, main = "Scatterplot with User-Defined Means",
+        xlab = "Data 1", ylab = "Data 2"
+    )
+})
+```
+
+In this context, the `renderPlot()` function creates a reactive context that listens for changes in any of the inputs used inside it 
+(i.e., `input$obs`, `input$mean1`, `input$mean2`, and `input$col`). 
+When *any* of these inputs change, the *entire* `renderPlot()` function is re-executed, updating the scatterplot with the new input values.
+
+This means that even when we only change the color of the points (`input$col`), 
+the data for the scatterplot (`data1` and `data2`) is also regenerated because they are defined within the `renderPlot()` reactive context. 
+
+This may not be an issue in this simple example because it's random data and who cares, 
+but in more complex apps where data processing is more complex or computationally expensive, this could potentially be a problem.
+
+At minimum, it may be confusing to the user, who typically wouldn't be staring at the underlying code of the application.
+
+#### The Solution
+
+To optimize the app, we could use `reactiveValues()` to store multive independent reactive values within a single object and then use `observe` to create and modify those values.
+
+`observe` is a function in the Shiny R package that sets up a reactive relationship. 
+Essentially, an `observe` block of code sets up a dependency on one or more reactive values or expressions, 
+and the code inside the observe block is executed each time any of those reactive dependencies change.
+
+The `observe` function is used to create a **side-effect**. 
+This means that it does something based on the reactive environment, but it does not return anything itself. 
+It instead performs an action like modifying a reactive variable or doing something else that affects the world outside of the reactive context, 
+such as creating a plot, printing to the console, or writing to a file.
+
+These reactive expressions would only re-execute when its inputs (`input$obs`, `input$mean1` or `input$mean2`, respectively) change, 
+not when the point color input (`input$col`) changes. 
+
+Here's what that would look like:
+
+```{r}
+# Define Server
+server <- function(input, output) {
+    data <- reactiveValues()
+
+    observe({
+        data$data1 <- rnorm(input$obs, mean = input$mean1)
+    })
+
+    observe({
+        data$data2 <- rnorm(input$obs, mean = input$mean2)
+    })
+
+    output$scatterPlot <- renderPlot({
+        plot(data$data1, data$data2,
+            col = input$col, main = "Scatterplot with User-Defined Means",
+            xlab = "Data 1", ylab = "Data 2"
+        )
+    })
+}
+
+# Run the Shiny app, using the same UI as before.
+shinyApp(ui = ui, server = server, options = list(height = 550))
+```
+
+Now, when the color is changed, the scatterplot is re-rendered, but the data isn't regenerated because it's not a direct dependency of the color input. 
+
+<details>
+  <summary>Confused? Click for a detailed explanation</summary>
+    Each `observe` block is defining a dependency on `input$obs`, `input$mean1`, and `input$mean2`, respectively. 
+    This means that whenever `input$obs`, `input$mean1`, and `input$mean2` changes, 
+    the corresponding `observe` block will be executed and will update `data$data1` or `data$data2` respectively.
+
+</details> 
+
+This example demonstrates the importance of paying attention to your reactive expressions and how they function.
+
+## Exercise: Enhancing the Shiny App
+
+Given the previous Shiny app, your task is to add two new inputs: one that changes the standard deviation of the randomly generated data, and another that changes the title of the scatterplot.
+
+1. Standard Deviation Input: Add numeric inputs that allows the user to set the standard deviation for each generated random normal data. 
+The input should be a slider ranging from 0.5 to 5, with a default value of 1. 
+Use the standard deviation value when generating the `data1` and `data2` variables in the server function (`data$data1 <- rnorm(input$obs, mean = input$mean1, sd = ???)`).
+
+2. Plot Title Input: Add a text input that allows the user to set the title of the scatterplot. 
+Use this title when rendering the plot in the server function (`plot(..., main = input$??? ...)`).
+
+Here is the skeleton code for you to work on:
+
+```{r, eval=FALSE}
+# Define UI
+ui <- fluidPage(
+    titlePanel("My (Extra) Enhanced Shiny App"),
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("obs", "Number of observations",
+                min = 1, max = 100, value = 50
+            ),
+            sliderInput("mean1", "Mean of first dataset",
+                min = -10, max = 10, value = 0
+            ),
+            sliderInput("mean2", "Mean of second dataset",
+                min = -10, max = 10, value = 0
+            ),
+            selectInput("col", "Color for points",
+                choices = c("red", "blue", "green"), selected = "red"
+            )
+            # Add your inputs here.
+        ),
+        mainPanel(
+            plotOutput("scatterPlot")
+        )
+    )
+)
+
+# Define Server
+server <- function(input, output) {
+    data <- reactiveValues()
+
+    observe({
+        data$data1 <- rnorm(input$obs, mean = input$mean1, sd = input$sd1)
+    })
+
+    observe({
+        data$data2 <- rnorm(input$obs, mean = input$mean2, sd = input$sd2)
+    })
+
+    output$scatterPlot <- renderPlot({
+        plot(data$data1, data$data2,
+            col = input$col,
+            main = "Generated Normal Distribution",
+            xlab = "Data 1", ylab = "Data 2"
+        )
+    })
+}
+
+# Run the Shiny app
+shinyApp(ui = ui, server = server, options = list(height = 550))
+```
+
+Hints:
+
+- To add a slider input, use the `sliderInput()` function. For example: `sliderInput("id", "label", min, max, value)`.
+- To add a text input, use the `textInput()` function. For example: `textInput("id", "label", value)`.
+- Replace the ??? in the server function with the IDs of your new inputs.
+
+<details>
+  <summary>Click for solution</summary>
+    
+```{r}
+# Define UI
+ui <- fluidPage(
+    titlePanel("My (Extra) Enhanced Shiny App"),
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("obs", "Number of observations",
+                min = 1, max = 100, value = 50
+            ),
+            sliderInput("mean1", "Mean of first dataset",
+                min = -10, max = 10, value = 0
+            ),
+            sliderInput("mean2", "Mean of second dataset",
+                min = -10, max = 10, value = 0
+            ),
+            selectInput("col", "Color for points",
+                choices = c("red", "blue", "green"), selected = "red"
+            ),
+            sliderInput("sd1", "Standard deviation of first dataset",
+                min = 0.5, max = 5, value = 1
+            ),
+            sliderInput("sd2", "Standard deviation of second dataset",
+                min = 0.5, max = 5, value = 1
+            ),
+            textInput("title", "Title for scatterplot",
+                value = "Scatterplot with User-Defined Means"
+            )
+        ),
+        mainPanel(
+            plotOutput("scatterPlot")
+        )
+    )
+)
+
+# Define Server
+server <- function(input, output) {
+    data <- reactiveValues()
+
+    observe({
+        data$data1 <- rnorm(input$obs, mean = input$mean1, sd = input$sd1)
+    })
+
+    observe({
+        data$data2 <- rnorm(input$obs, mean = input$mean2, sd = input$sd2)
+    })
+
+    output$scatterPlot <- renderPlot({
+        plot(data$data1, data$data2,
+            col = input$col,
+            main = input$title,
+            xlab = "Data 1", ylab = "Data 2"
+        )
+    })
+}
+
+# Run the Shiny app
+shinyApp(ui = ui, server = server, options = list(height = 800))
+```
+</details>
+
+### Too Easy?
+
+If you found the previous exercise too easy, try adding new inputs that allow the user to change the x and y-axis labels of the scatterplot.
+Or make both datasets share the same standard deviation.
+
+## Recap
+
+To summarize, this module covered:
+
+- **Why Shiny?:** We discussed what Shiny is, its applications, and its importance in creating interactive web applications with R.
+
+- **Understanding the Structure of a Shiny App:** We explained that a Shiny app consists of two main parts - a User Interface (UI) and a Server function. 
+The UI defines how the app looks and the Server function defines how the app behaves.
+We introduced common Shiny inputs, outputs, and layout controls. 
+
+- **An Introduction to Reactivity:** We learned about the concept of reactivity, which is the core of Shiny's interactivity. 
+We discussed how reactive expressions and render functions work, and how they are triggered to re-execute when their dependencies change.
+
+- **The First Wall:** We used an illustrative example to explore some of the frustrating aspects of reactivity, such as unintended re-computation.
+
+- **Practical Exercise:** We carried out an exercise where we enhanced a Shiny app by adding new inputs that change aspects of the plot and data. 
+This exercise aimed to reinforce understanding of Shiny inputs, outputs, and reactivity.
+
+By the end of this module, participants should have a basic understanding of Shiny's core concepts
+and a general idea of how a Shiny app is constructed.
+
+In the next module, we will move on to applying these concepts from scratch to build a basic Shiny app.

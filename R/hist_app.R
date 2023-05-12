@@ -36,9 +36,24 @@
 #'
 #' @author Jared Andrews
 #' @export
-shiny_hist <- function(data, x, title = "Histogram", xlab = "x", ylab = "y",
-                      main = "Histogram", col = "blue", bins = 10, xlim = range(bins), ylim = NULL, border = "black",
-                      lwd = 1, lty = 1, cex = 1, cex.main = 1, cex.lab = 1, cex.axis = 1, cex.sub = 1) {
+shiny_hist <- function(data,
+                       x,
+                       title = "Histogram",
+                       xlab = "x",
+                       ylab = "y",
+                       main = "Histogram",
+                       col = "blue",
+                       bins = 10,
+                       xlim = range(bins),
+                       ylim = NULL,
+                       border = "black",
+                       lwd = 1,
+                       lty = 1,
+                       cex = 1,
+                       cex.main = 1,
+                       cex.lab = 1,
+                       cex.axis = 1,
+                       cex.sub = 1) {
   # Create the UI
   ui <- fluidPage(
     # Application title
