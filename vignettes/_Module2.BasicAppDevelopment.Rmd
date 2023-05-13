@@ -192,11 +192,8 @@ such as by grouping the inputs for each plot type and using reactive expressions
 
 ### The Redesign
 
-If we had thought about the possibility of multiple plot types from the start,
-we could have designed the UI and server in a way that more easily accommodates this feature.
-
 Can you think of a better way to design the UI and server for this app? 
-Take a minute to think about it before reading on.
+Take a minute to think about it before expanding the solution below.
 
 <details>
   <summary>A Solution</summary>

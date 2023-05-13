@@ -53,24 +53,21 @@ Shiny has several key features:
 In essence, a Shiny app reacts to changes in inputs and recalculates outputs automatically.
 
 - **Flexible UI**: Shiny provides a range of layout and UI elements out of the box, but also allows for extensive customization with HTML, CSS, and JavaScript if desired. 
-Many additional packages are available to extend Shiny's capabilities, 
+Many additional packages are available to extend Shiny's potential layouts and UI elements, 
 like [shinydashboard](https://rstudio.github.io/shinydashboard/), [shinythemes](https://rstudio.github.io/shinythemes/), 
 [shinyjs](https://deanattali.com/shinyjs/), and [shinyWidgets](https://shinyapps.dreamrs.fr/shinyWidgets/).
 
 - **Full R integration**: Shiny apps are fully integrated with R, which means they can use any R package, function, or data structure.
 
-- **Simple deployment**: Shiny apps can be easily published on the web through services like shinyapps.io or Posit Connect, or can be run locally and shared through open-source Shiny Server.
+- **Simple deployment**: Shiny apps can be easily published on the web through services like shinyapps.io or Posit Connect, 
+or can be run locally and shared through open-source Shiny Server.
 
 During this workshop, we'll be focusing on developing a solid understanding of Shiny's core concepts, as well as the skills to create and deploy your own Shiny apps. 
 By the end of the workshop, you should be able to use Shiny to create interactive visualizations and dashboards using your own data.
 
 Where possible, we will use real-world scientific datasets to make the session more relevant. 
 
-Remember, learning Shiny is not just about writing code, but also about thinking in terms of reactivity. 
-This is a new way of programming for many, and it can take a bit of time to adjust. 
-Don't worry if you don't understand everything immediately - with practice and patience, it will become second nature.
-
-Let's get started with understanding the architecture of a Shiny app.
+With that, let's get started with understanding the architecture of a Shiny app.
 
 ## Understanding Shiny's Architecture
 
