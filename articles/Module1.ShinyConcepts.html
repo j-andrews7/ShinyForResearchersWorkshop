@@ -93,7 +93,7 @@ Andrews</h4>
 TN<br><a class="author_email" href="mailto:#"></a><a href="mailto:jared.andrews@stjude.org" class="email">jared.andrews@stjude.org</a>
       </address>
                   
-            <h4 data-toc-skip class="date">May 11th, 2023</h4>
+            <h4 data-toc-skip class="date">May 12th, 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop/blob/HEAD/vignettes/Module1.ShinyConcepts.Rmd" class="external-link"><code>vignettes/Module1.ShinyConcepts.Rmd</code></a></small>
       <div class="hidden name"><code>Module1.ShinyConcepts.Rmd</code></div>
@@ -126,7 +126,7 @@ div.main-container {
 </h2>
 <p><strong>St. Jude members may view <a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/" class="external-link">an
 interactive form of this document here</a>.</strong> Must be connected
-the the St. Jude network to view.</p>
+to the St. Jude network to view.</p>
 <p>Shiny is a powerful R package developed by RStudio (now called Posit)
 that allows users to create interactive web applications directly in R.
 It allows development of apps that can process, analyze, and visualize
@@ -283,14 +283,27 @@ a sidebar and a main panel.</p></li>
 sidebar that usually contains input controls.</p></li>
 <li><p><code><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html" class="external-link">mainPanel()</a></code>: This function is used to create a main
 panel that usually contains outputs (plots, tables, etc.).</p></li>
-<li><p><code>Input Functions</code>: These functions create interactive
-elements that users can manipulate.</p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="section-input-functions">Input Functions<a class="anchor" aria-label="anchor" href="#section-input-functions"></a>
+</h3>
+<p>These functions create interactive elements that users can
+manipulate.</p>
+<ul>
 <li><p><code><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput()</a></code>: Creates a slider that the user can
 move to select numerical values.</p></li>
 <li><p><code><a href="https://rdrr.io/pkg/shiny/man/textInput.html" class="external-link">textInput()</a></code>: Creates a box where users can enter
 text.</p></li>
 <li><p><code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput()</a></code>: Creates a dropdown menu from which
 users can select an option.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput()</a></code>: Creates a checkbox that users can
+select or deselect.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html" class="external-link">radioButtons()</a></code>: Creates a set of radio buttons that
+users can select from.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton()</a></code>: Creates a button that users can
+click to trigger an action.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput()</a></code>: Creates a numeric selector.</p></li>
 </ul>
 </div>
 <div class="section level3">
