@@ -21,7 +21,9 @@ Imports:
     plotly,
     PCAtools,
     shinyWidgets,
-    shinyjqui
+    shinyjqui,
+    shinyjs,
+    reactlog
 Suggests: 
     knitr,
     rmarkdown,

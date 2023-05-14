@@ -43,9 +43,11 @@ Must be connected to the St. Jude network to view.
 
 ## Common Gotchas and Debugging Challenges
 
+Debugging, the process of finding and fixing bugs, is a critical skill when working with Shiny apps, just like with any other programming. 
+
 There are many "gotchas" that beginner Shiny developers can run into, and these are typically more difficult to troubleshoot than typical R code for a few reasons.
 
-These debugging challenges include:
+These debugging challenges stem from:
 
 - **Reactivity:** Shiny operates on a reactive programming model, which can be quite different from the standard procedural programming model common in R. 
 In reactive programming, outputs are automatically updated based on changes to inputs. 
@@ -68,119 +70,15 @@ For example, a bug might only occur when two users interact with the app in a ce
 - **Deployment-related issues:** Problems may arise when deploying Shiny apps that were not present during local development. 
 These can be due to differences in the environments, such as different R versions available or missing system dependencies on the host.
 
-### An Asynchronous Example
-
-Asynchronous operations in Shiny apps can be a source of bugs due to their nature of allowing multiple tasks to be executed independently and often in an unpredictable order. 
-This is especially true when you're using reactive expressions that depend on some external resource, like a file or a database.
-
-Let's consider a simple Shiny app that generates a large data file when a user clicks a button, writes it to file, reads it back in, and displays the number of rows in the file.
-
-This is an easily mockable example, but it could be a real-world scenario if you're working with large data files that take a while to load or have expensive computations
-that are done on the fly.
-
-```{r}
-library(shiny)
-
-ui <- fluidPage(
-    actionButton("generate", "Generate data"),
-    textOutput("nrows")
-)
-
-server <- function(input, output, session) {
-    # This function is run when the "Generate data" button is clicked.
-    data <- eventReactive(input$generate,
-        {
-            # Generate a data frame from a random normal distribution of a random large size.
-            data <- data.frame(rnorm(sample(500000:1000000, 1)))
-
-            # Write the data frame to a CSV file
-            write.csv(data, "data.csv", row.names = FALSE)
-
-            # Read data back in.
-            read.csv("data.csv")
-        },
-        ignoreNULL = FALSE
-    )
-
-    output$nrows <- renderText({
-        nrow(data())
-    })
-}
-
-shinyApp(ui = ui, server = server)
-```
-
-This app has some wonky behavior related to asynchronous operations. 
-The `read.csv` and `write.csv` functions can take a while to run if the CSV file is large. 
-If the user clicks the "Generate data" button and then immediately clicks it again before the first `write.csv` or `read.csv` call has finished, 
-the data reactive expression will be invalidated and re-executed, interrupting the previous call.
-
-This can lead to unexpected behavior, like data being `NULL` if the second `read.csv` call finishes before the first one, 
-or the output flickering between different values if the two `read.csv` calls finish at nearly the same time.
-
-One way to fix this bug is to disable the "Generate data" button while the data is generating and re-enable it when the data has been loaded. Here's how you could do that:
-
-```{r}
-library(shiny)
-library(shinyjs) # This package has many useful functions for controlling Shiny inputs and outputs.
-
-ui <- fluidPage(
-    # This function must be called in order to use shinyjs functions.
-    useShinyjs(rmd = TRUE), # rmd = TRUE is required for R Markdown documents, but not for regular Shiny apps.
-
-    actionButton("generate", "Generate data"),
-    textOutput("nrows")
-)
-
-server <- function(input, output, session) {
-    # This function is run when the "Generate data" button is clicked.
-    # It generates a dataframe, writes it to a CSV file, reads it back in, and returns the data frame as a reactive value.
-    data <- eventReactive(input$generate,
-        {
-            # Generate a data frame from a random normal distribution of a random large size.
-            data <- data.frame(rnorm(sample(500000:1000000, 1)))
-
-            # Write the data frame to a CSV file
-            write.csv(data, "data.csv", row.names = FALSE)
-
-            # Read data back in and return it as a reactive value.
-            read.csv("data.csv")
-        },
-        ignoreNULL = FALSE
-    )
-
-    # When the "Generate data" button is clicked, use shinysj to disable it.
-    observeEvent(input$generate, {
-        shinyjs::disable("generate")
-    })
-
-    # When the data has finished generating/loading, use shinyjs to enable the "Generate data" button.
-    observe({
-        data()
-        shinyjs::enable("generate")
-    })
-
-    output$nrows <- renderText({
-        nrow(data())
-    })
-}
-
-shinyApp(ui = ui, server = server)
-```
-
-In this version of the app, reactive expressions are used to disable the "Load data" button when clicked and re-enable it when the data has loaded, 
-preventing the user from clicking it multiple times in quick succession.
-
 ## Debugging Shiny Apps
 
-Debugging is a critical skill when working with Shiny apps, just like with any other programming. Here are a few techniques you can use to debug your Shiny apps:
+Here are a few techniques you can use to debug your Shiny apps:
 
-- **Print debugging:** This is the simplest way of debugging. You can use the `print()` function to print out values at specific points in your app. 
-This can help you to check the values of certain variables or expressions. 
+- **The `browser()` function:** This function pauses execution of your app and lets you interactively run and inspect code. 
+You can step through your code line by line and examine the current state of variables and reactives. 
 
 For example:
-
-```{r}
+```{r, eval = FALSE}
 ui <- fluidPage(
     titlePanel("Debugging Shiny Apps"),
     sidebarLayout(
@@ -195,23 +93,6 @@ ui <- fluidPage(
 
 server <- function(input, output) {
     output$result <- renderText({
-        x <- 1 / as.numeric(input$num)
-        print(paste("The reciprocal is", x))
-    })
-}
-
-shinyApp(ui, server)
-```
-
-This is particularly useful when you want to see the value of x at runtime.
-
-- **The `browser()` function:** This function pauses execution of your app and lets you interactively run and inspect code. 
-You can step through your code line by line and examine the current state of variables and reactives. 
-
-For example:
-```{r}
-server <- function(input, output) {
-    output$result <- renderText({
         browser()
         x <- 1 / as.numeric(input$num)
         paste("The reciprocal is", x)
@@ -223,14 +104,17 @@ shinyApp(ui, server)
 
 When the `browser()` line is hit, you'll be able to step through the code and see the value of each variable at each step.
 
-- **Using `reactiveLog()`:** This function is useful for understanding when and why reactive values and expressions are being executed. 
-You call reactiveLog(TRUE) to turn it on, and then you'll see messages in your console every time a reactive is invalidated or executed.
+Consider this your bread and butter for debugging Shiny apps and R code in general.
 
-For example:
-```{r}
+- **Using the react log:** This method uses the `reactlog` package to log reactive events in your app.
+This can be very helpful to see when and why your reactive expressions are firing.
+
+To see how it works, launch our simple app and change the input value a few times.
+```{r, eval = FALSE}
+library(reactlog)
+reactlog_enable() # This turns on reactive logging for Shiny apps in the R session.
+
 server <- function(input, output) {
-    reactiveLog(TRUE)
-
     output$result <- renderText({
         x <- 1 / as.numeric(input$num)
         paste("The reciprocal is", x)
@@ -240,39 +124,239 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
+Now open the react log.
+
+```{r, eval = FALSE}
+shiny::reactlogShow()
+```
+
 This is useful when you're unsure of when and why your reactives are firing.
 
-- **The `reactiveConsole()` function:** This function allows you to interactively run code that involves reactive values or expressions. 
+- **The `reactiveConsole()` function:** This one isn't necessarily a debugging tool, but it's useful for playing around with reactives in the console.
+This function allows you to interactively run code that involves reactive values or expressions. 
 Normally, you can't do this because reactives only work within the correct reactive context. 
 But when you call `reactiveConsole(TRUE)`, you can run this code directly from the console.
 
+**This is an experimental feature currently, but it's useful for playing around with reactives in the console.**
+
 For example:
 
-```{r}
-server <- function(input, output, session) {
-    reactiveConsole(TRUE)
+```{r, eval = FALSE}
+reactiveConsole(TRUE)
 
-    output$result <- renderText({
-        x <- 1 / as.numeric(input$num)
-        paste("The reciprocal is", x)
-    })
-}
+x <- reactiveVal(10)
+y <- observe({
+    message("The value of x is ", x())
+})
+x(20)
+x(30)
+
+reactiveConsole(FALSE)
 ```
 
-This is useful when you want to experiment with reactives interactively.
-
-Using validate() and need(): These functions are used to handle errors and missing values in a user-friendly way. For example, if you need a certain input to be provided before you can render output, you can use these functions to display a friendly error message instead of a cryptic error:
-r
-Copy code
-server <- function(input, output, session) {
-  output$result <- renderText({
-    validate(
-      need(input$num, "Please enter a number")
-    )
-    x <- 1 / as.numeric(input$num)
-    paste("The reciprocal is", x)
-  })
-}
-This is useful when you want to provide user-friendly error messages and handle missing or incorrect inputs.
+This is useful when you want to experiment with reactives to see how they interact.
 
 Remember, debugging is a skill that takes practice to develop, and these tools will help you identify and fix issues in your Shiny apps more easily.
+
+### An Exercise in Debugging
+
+Here's a common "gotcha" scenario involving reactivity and debugging in R Shiny.
+
+Consider the following simple Shiny app:
+
+```{r}
+ui <- fluidPage(
+    textInput("inputText", "Enter some text:"),
+    actionButton("goButton", "Go"),
+    textOutput("outputText")
+)
+
+server <- function(input, output) {
+    observeEvent(input$goButton, {
+        output$outputText <- renderText({
+            paste("You entered:", input$inputText)
+        })
+    })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+In this app, the user is supposed to enter some text, then click the "Go" button to display the entered text. 
+However, when you run this app and try to use it, you'll find that the "Go" button doesn't seem to do anything beyond the first press. 
+The output text doesn't update when you click the button, but when you input the number.
+
+Take a close look at the code. 
+Have any ideas about what's going on?
+
+#### Using `browser()` to Debug
+
+Let's try using our newfound friend, the `browser` function, to see if we can figure out what's going on.
+
+First, we have to add the `browser()` function to our code.
+Execution will pause at whatever point we place it, and we'll be able to explore the environment or step through the code line by line.
+
+Take a second to think about where it makes the most sense to place the `browser()` function in this app.
+
+You can use as many browser calls as you'd like - execution will pause at each, but usually you'll only need one or two near where the problem is occurring.
+
+```{r, eval = FALSE}
+ui <- fluidPage(
+    textInput("inputText", "Enter some text:"),
+    actionButton("goButton", "Go"),
+    textOutput("outputText")
+)
+
+server <- function(input, output) {
+    observeEvent(input$goButton, {
+        output$outputText <- renderText({
+            browser() # Add browser() call here
+            paste("You entered:", input$inputText)
+        })
+    })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+When you run this app, enter some text, and click the "Go" button, the app will pause and you'll be put into browser mode. 
+You can now inspect the environment at this point in the execution. 
+For example, you could check the value of `input$inputText`.
+
+Click "Continue" to resume execution, then change the input values. 
+This will result in `browser` being called again.
+
+In this case, the `browser()` function can help you understand that `renderText` is being recomputed even when the button isn't pressed. 
+In general, `browser()` is a great tool for understanding the flow of a Shiny app and figuring out where things are going wrong. 
+It's especially useful in more complex apps where the control flow and reactivity can be difficult to follow.
+
+#### The Issue
+
+The mistake here is a misunderstanding about how reactivity works in Shiny. 
+
+`observeEvent` depends on `input$goButton`, but the expression passed to it is not isolated. 
+
+That means that if it uses or depends on reactive values, it will be re-executed whenever those values change, regardless of whether the event has occurred.
+The `renderText` function includes `input$inputText`, which is a reactive value, so `renderText` will be re-executed whenever the value of `input$inputText` changes.
+
+There are a few ways to fix this:
+
+1. Use `isolate()` to prevent `renderText` from being re-executed when `input$inputText` changes.
+
+`isolate` is a function that prevents reactive values from triggering recomputation of a reactive expression. 
+ It is very useful for situations like this where you want output to be updated only when a certain event occurs. 
+
+<details>
+  <summary>Solution 1</summary>
+
+```{r}
+ui <- fluidPage(
+    textInput("inputText", "Enter some text:"),
+    actionButton("goButton", "Go"),
+    textOutput("outputText")
+)
+
+server <- function(input, output) {
+    observeEvent(input$goButton, {
+        output$outputText <- renderText({
+            # Note wrapping of input$inputText in isolate()
+            paste("You entered:", isolate(input$inputText))
+        })
+    })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+</details>
+
+2. Get rid of the `observeEvent` and check the value of `input$goButton` inside of `renderText`, again coupled with `isolate`.
+  
+<details>
+  <summary>Solution 1</summary>
+
+```{r}
+ui <- fluidPage(
+    textInput("inputText", "Enter some text:"),
+    actionButton("goButton", "Go"),
+    textOutput("outputText")
+)
+
+server <- function(input, output) {
+    output$outputText <- renderText({
+        # Action buttons have a counter that increments on click.
+        # This will prevent the text from updating until the button is clicked.
+        if (input$goButton == 0) {
+            return(NULL)
+        }
+        paste("You entered:", isolate(input$inputText))
+    })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+</details>
+
+The second solution is a more common pattern for using action buttons than the first solution. 
+It's easier to follow and doesn't require an additional reactive expression in the form of the `observeEvent` call.
+
+The `isolate` function is used to prevent `input$inputText` from triggering recomputation on its own, so the text will only update when the button is clicked.
+
+This example illustrates a common misunderstanding about Shiny's reactivity model, and also demonstrates the kind of thinking required to debug a Shiny app. 
+Debugging in Shiny can be challenging because the code execution is event-driven and asynchronous, which is quite different from the usual top-to-bottom flow of an R script.
+
+## Deployment Options
+
+After you've built your Shiny application, the next step is to share it with the world. Or your lab.
+There are several ways to do this, ranging from simple and free solutions for small apps, 
+to more complex and robust methods for large-scale applications. 
+
+In this section, we'll cover two popular deployment options: shinyapps.io and Posit (formerly RStudio) Connect.
+
+### Shinyapps.io
+
+Shinyapps.io is a service provided by RStudio for hosting Shiny applications. 
+It's an easy way to publish your applications to the web without needing to manage a server.
+
+#### Key features:
+- **Simple Deployment:** You can publish your apps directly from your RStudio IDE with a few clicks.
+
+- **Scalability:** Shinyapps.io can automatically manage the server resources for your app, scaling it up and down as needed based on traffic.
+
+- **Authentication and User Management:** With shinyapps.io, you can control who can access your applications. It also supports Google Authentication and GitHub.
+
+- **Analytics:** Shinyapps.io provides usage statistics for your applications, so you can see how many people are using it, when, and from where.
+
+#### Limitations:
+- The free tier of shinyapps.io has limitations on the number of active hours your apps can have in a month, 
+the number of applications you can deploy, and the resources each can use (e.g. 4GB memory) max.
+
+While shinyapps.io is great for small to medium-sized applications, for large-scale enterprise applications, you might need more control over your server environment.
+
+### Posit Connect
+
+Posit Connect is a more commerical, professional publishing platform. 
+It is designed to help you share Shiny applications, R Markdown reports, Plumber APIs, data Pins, and more with your colleagues and organization.
+
+#### Key features:
+- **Flexible Deployment:** You can deploy your apps on your own servers, giving you more control over the environment.
+
+- **Security and Access Control:** RStudio Connect offers robust security features, including integration with many enterprise authentication systems. 
+You can control who can access your applications at a very granular level.
+
+- **Schedule Reports:** One of the most powerful features of RStudio Connect is the ability to schedule R Markdown reports and have them emailed to a list of recipients.
+
+- **Manage Multiple R Versions:** RStudio Connect supports multiple versions of R concurrently. 
+This can be crucial for reproducibility in team settings.
+
+#### Limitations:
+- RStudio Connect is a commercial product, and it comes with a hefty cost.
+Fortunately, St. Jude has a liecense, so we don't have to worry about said cost.
+
+- Setting up RStudio Connect requires more technical expertise than using shinyapps.io. 
+You'll need to install and manage it on your own server.
+However, once it's set up, it's very easy to deploy applications from RStudio.
+You can put in a serviceNow request to have a VM spun up and Posit Connect installed on it.
+
+- Making apps publically available is a bit more complicated than shinyapps.io, and St. Jude IT/legal has concerns if data is to be uploaded to the server.
