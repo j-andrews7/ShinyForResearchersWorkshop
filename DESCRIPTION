@@ -24,6 +24,7 @@ Imports:
     shinyjqui,
     shinyjs,
     reactlog,
+    SummarizedExperiment,
     airway,
     magrittr,
     DESeq2,

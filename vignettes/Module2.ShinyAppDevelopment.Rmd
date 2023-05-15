@@ -40,8 +40,8 @@ div.main-container {
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
-    fig.path = "figures",
-    eval = FALSE
+  fig.path = "figures/",
+  eval = FALSE
 )
 ```
 
@@ -806,7 +806,12 @@ Generally, this should almost always be done, but those arguments could be contr
 `removeVar` is the variance cutoff for features to be included in the PCA - this allows the user to ignore features with very little variance that may not be informative.
 This is another argument that could be controlled by the user (**hint hint**).
 
-**This analysis should be part of the app.**
+```{r, eval=FALSE}
+# The actual PCA results can be accessed with:
+p$rotated
+```
+
+**This analysis should be part of the app.** Probably a `reactive()` function that uses the data matrix and metadata as inputs and returns the PCA results...
 
 ### Your Turn
 
