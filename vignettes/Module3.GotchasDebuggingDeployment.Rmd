@@ -4,7 +4,7 @@ author:
 - name: "Jared Andrews"
   email: jared.andrews@stjude.org
   affiliation: St. Jude Children's Research Hospital, Memphis, TN
-date: "May 12th, 2023"
+date: "May 15th, 2023"
 output: 
   html_document:
     code_folding: show
@@ -38,11 +38,14 @@ div.main-container {
 }
 ```
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+    fig.path = "figures",
+    eval = FALSE
+)
 ```
 
-**St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/).** 
+**St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/).** 
 Must be connected to the St. Jude network to view.
 
 ## Common Gotchas and Debugging Challenges
@@ -137,6 +140,11 @@ shiny::reactlogShow()
 ```
 
 This is useful when you're unsure of when and why your reactives are firing.
+
+- **Chuck It at an LLM:** Large language models (like chatGPT) trained on large amounts of code are often very good at finding bugs in code.
+They may not always have the fix right away, but they can often point you in the right direction.
+This is especially true with the latest models like GPT4. 
+For more complex applications, you'll still want to learn the above debugging tools, but for simple apps or singular functions, this can be a quick way to find bugs.
 
 - **The `reactiveConsole()` function:** This one isn't necessarily a debugging tool, but it's useful for playing around with reactives in the console.
 This function allows you to interactively run code that involves reactive values or expressions. 

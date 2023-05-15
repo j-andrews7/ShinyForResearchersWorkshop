@@ -65,9 +65,23 @@ or can be run locally and shared through open-source Shiny Server.
 During this workshop, we'll be focusing on developing a solid understanding of Shiny's core concepts, as well as the skills to create and deploy your own Shiny apps. 
 By the end of the workshop, you should be able to use Shiny to create interactive visualizations and dashboards using your own data.
 
-Where possible, we will use real-world scientific datasets to make the session more relevant. 
+### **How This Workshop Uses Shiny**
 
-With that, let's get started with understanding the architecture of a Shiny app.
+Nearly all of the content in this workshop is in the form of R markdown documents.
+You might think, "Hey, those aren't Shiny apps, what gives?"
+
+And you'd be right, they aren't Shiny apps, but they have no trouble running shiny apps provided you have the `runtime: shiny` line in the YAML of the document and are
+running the document in a live R environment (like RStudio or a server with R, which is likely how you're viewing it).
+
+Using Shiny in this way allows us to create a more interactive learning experience, where you can run code and see the results in real time.
+And the code  works just the same as a standalone app. 
+The only difference is that we'll use `options = list(height = 500)` to adjust the size of our Shiny apps rendered in the notebook so they fit better.
+
+Embedding Shiny apps in R markdown documents is a great way to mix analysis and viz with relevant contextual info (like explaining the data or experimental setup).
+These documents can also be easily shared with others, and can be run locally or on a server.
+We'll get into more of that later.
+
+First, let's get started with understanding the architecture of a Shiny app.
 
 ## Understanding Shiny's Architecture
 

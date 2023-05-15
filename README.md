@@ -1,7 +1,7 @@
 
 # Shiny for Scientists Workshop <img align="right" src="man/figures/logo.png" alt="Learning Shiny" width="150" />
 
-Authors: Jared Andrews[^1] <br/> Last modified: May 12th, 2023.
+Authors: Jared Andrews[^1] <br/> Last modified: May 15th, 2023.
 
 ## Overview
 
@@ -87,8 +87,9 @@ This workshop utilizes the following packages:
 - [ggplot2](https://ggplot2.tidyverse.org/)
 - [plotly](https://plotly.com/r/)
 - [PCAtools](https://bioconductor.org/packages/release/bioc/html/PCAtools.html)
-- [shinyjqui](https://cran.r-project.org/web/packages/shinyjqui/index.html)
-- [shinyBS](https://cran.r-project.org/web/packages/shinyBS/index.html)
+- [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html)
+- [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
+- [airway](https://bioconductor.org/packages/release/data/experiment/html/airway.html)
 
 ### Workshop Outline
 

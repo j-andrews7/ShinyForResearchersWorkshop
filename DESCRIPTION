@@ -23,7 +23,11 @@ Imports:
     shinyWidgets,
     shinyjqui,
     shinyjs,
-    reactlog
+    reactlog,
+    airway,
+    magrittr,
+    DESeq2,
+    org.Hs.eg.db
 Suggests: 
     knitr,
     rmarkdown,

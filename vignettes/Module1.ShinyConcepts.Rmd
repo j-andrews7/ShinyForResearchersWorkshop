@@ -4,7 +4,7 @@ author:
 - name: "Jared Andrews"
   email: jared.andrews@stjude.org
   affiliation: St. Jude Children's Research Hospital, Memphis, TN
-date: "May 12th, 2023"
+date: "May 14th, 2023"
 output: 
   html_document:
     code_folding: show
@@ -21,11 +21,11 @@ vignette: >
 ```{css, echo=FALSE}
 // This is a CSS code chunk to make the page wider, as the default width is annoyingly narrow.
 body {
-  max-width: 1850px !important;
+  max-width: 1400px !important;
 }
 div.main-container {
-  max-width: 1850px !important;
-  width: 1850px !important;
+  max-width: 1400px !important;
+  width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -33,13 +33,16 @@ div.main-container {
   padding-right: 0px;
   padding-left: 0px;
   margin-left: 300px;
-  max-width: 1550px !important;
-  width: 1550px !important;
+  max-width: 1100px !important;
+  width: 1100px !important;
 }
 ```
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  fig.path = "figures/",
+  eval = FALSE
+)
 ```
 
 ## Why Shiny?
@@ -48,8 +51,8 @@ knitr::opts_chunk$set(eval = FALSE)
 Must be connected to the St. Jude network to view.
 
 Shiny is a powerful R package developed by RStudio (now called Posit) that allows users to create interactive web applications directly in R. 
-It allows development of apps that can process, analyze, and visualize data in real time, without needing to know any HTML, 
-CSS, or JavaScript, although these can be used for more advanced customization.
+It allows development of apps that can process, analyze, and visualize data in real time, without needing to know any HTML, CSS, or JavaScript, 
+although these can be used for more advanced customization.
 
 Shiny has several key features:
 
@@ -57,24 +60,35 @@ Shiny has several key features:
 In essence, a Shiny app reacts to changes in inputs and recalculates outputs automatically.
 
 - **Flexible UI**: Shiny provides a range of layout and UI elements out of the box, but also allows for extensive customization with HTML, CSS, and JavaScript if desired. 
-Many additional packages are available to extend Shiny's capabilities, 
+Many additional packages are available to extend Shiny's potential layouts and UI elements, 
 like [shinydashboard](https://rstudio.github.io/shinydashboard/), [shinythemes](https://rstudio.github.io/shinythemes/), 
 [shinyjs](https://deanattali.com/shinyjs/), and [shinyWidgets](https://shinyapps.dreamrs.fr/shinyWidgets/).
 
 - **Full R integration**: Shiny apps are fully integrated with R, which means they can use any R package, function, or data structure.
 
-- **Simple deployment**: Shiny apps can be easily published on the web through services like shinyapps.io or Posit Connect, or can be run locally and shared through open-source Shiny Server.
+- **Simple deployment**: Shiny apps can be easily published on the web through services like shinyapps.io or Posit Connect, 
+or can be run locally and shared through open-source Shiny Server.
 
 During this workshop, we'll be focusing on developing a solid understanding of Shiny's core concepts, as well as the skills to create and deploy your own Shiny apps. 
 By the end of the workshop, you should be able to use Shiny to create interactive visualizations and dashboards using your own data.
 
-Where possible, we will use real-world scientific datasets to make the session more relevant. 
+### **How This Workshop Uses Shiny**
 
-Remember, learning Shiny is not just about writing code, but also about thinking in terms of reactivity. 
-This is a new way of programming for many, and it can take a bit of time to adjust. 
-Don't worry if you don't understand everything immediately - with practice and patience, it will become second nature.
+Nearly all of the content in this workshop is in the form of R markdown documents.
+You might think, "Hey, those aren't Shiny apps, what gives?"
 
-Let's get started with understanding the architecture of a Shiny app.
+And you'd be right, they aren't Shiny apps, but they have no trouble running shiny apps provided you have the `runtime: shiny` line in the YAML of the document and are
+running the document in a live R environment (like RStudio or a server with R, which is likely how you're viewing it).
+
+Using Shiny in this way allows us to create a more interactive learning experience, where you can run code and see the results in real time.
+And the code  works just the same as a standalone app. 
+The only difference is that we'll use `options = list(height = 500)` to adjust the size of our Shiny apps rendered in the notebook so they fit better.
+
+Embedding Shiny apps in R markdown documents is a great way to mix analysis and viz with relevant contextual info (like explaining the data or experimental setup).
+These documents can also be easily shared with others, and can be run locally or on a server.
+We'll get into more of that later.
+
+First, let's get started with understanding the architecture of a Shiny app.
 
 ## Understanding Shiny's Architecture
 
