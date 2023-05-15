@@ -478,6 +478,11 @@ max.</li>
 for large-scale enterprise applications, you might need more control
 over your server environment.</p>
 </div>
+<div class="section level4">
+<h4 id="section-how-to-deploy-to-shinyapps-io">How to Deploy to Shinyapps.io<a class="anchor" aria-label="anchor" href="#section-how-to-deploy-to-shinyapps-io"></a>
+</h4>
+<p>The process is simple, and there are easy to follow instructions <a href="https://docs.posit.co/shinyapps.io/getting-started.html#working-with-shiny-for-r" class="external-link">here</a>.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="section-posit-connect">Posit Connect<a class="anchor" aria-label="anchor" href="#section-posit-connect"></a>
@@ -520,6 +525,26 @@ and Posit Connect installed on it.</p></li>
 shinyapps.io, and St. Jude IT/legal has concerns if data is to be
 uploaded to the server.</p></li>
 </ul>
+</div>
+<div class="section level4">
+<h4 id="section-how-to-deploy-to-posit-connect">How to Deploy to Posit Connect<a class="anchor" aria-label="anchor" href="#section-how-to-deploy-to-posit-connect"></a>
+</h4>
+<p>This process is just a little more complicated than shinyapps.io.
+First, you need a Posit Connect server to which you have publishing
+permissions.</p>
+<p>At St. Jude, you can put in a ticket to have a Posit Connect server
+spun up for you. They will provide you with a URL that you will login to
+with your St. Jude credentials.</p>
+<p>To publish to this server, you’ll need to install the
+<code>rsconnect</code> package in RStudio.</p>
+<p>You’ll also need to connect your Posit account in RStudio,
+instructions for which are <a href="https://docs.posit.co/how-to-guides/pre-tasks/connect-account/" class="external-link">here</a>.</p>
+<p>Then, you can click the “Publish” button in the RStudio IDE to deploy
+your application to your server.</p>
+<p>When deploying the app, the app data and all packages used will be
+bundled and sent to the server. After deployment, you can control who
+can access the application through the settings on each piece of
+content.</p>
 </div>
 </div>
 <div class="section level3">
