@@ -61,6 +61,9 @@
 <li>
       <a href="articles/Module1.ShinyConcepts.html">Module 1 - Basic Shiny Concepts</a>
     </li>
+    <li>
+      <a href="articles/Module3.GotchasDebuggingDeployment.html">Module 3 - Common Gotchas, Debugging Shiny, and App Deployment</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -137,13 +140,23 @@
 <p>This workshop is designed as an instructor-led, hybrid-format experience. The material will remain available online for self-paced learning indefinitely.</p>
 </div>
 <div class="section level3">
+<h3 id="an-important-note-about-this-workshop">An Important Note About This Workshop<a class="anchor" aria-label="anchor" href="#an-important-note-about-this-workshop"></a>
+</h3>
+<p>Learning Shiny is not just about writing code, but also about thinking in terms of reactivity. This is a new way of programming for many, and it can take a bit of time to adjust.</p>
+<p>This workshop has a lot of content, and there’s no requirement that it all be covered in one session (or at all). The first two modules are the most important, so if taking an instructor-led workshop, <em>please</em> ask lots of questions.</p>
+<p>If leading a workshop with this material, care should be taken to move at whatever pace is necessary to make sure everyone understands the concepts in the first two modules before moving on.</p>
+<p>Don’t worry if you don’t understand everything perfectly, but if you’re finding yourself confused, please don’t hesitate to speak up.</p>
+</div>
+<div class="section level3">
 <h3 id="r--bioconductor-packages-used">
 <em>R</em> / <em>Bioconductor</em> Packages Used<a class="anchor" aria-label="anchor" href="#r--bioconductor-packages-used"></a>
 </h3>
 <p>This workshop utilizes the following packages:</p>
 <ul>
 <li><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></li>
+<li><a href="https://shinyapps.dreamrs.fr/shinyWidgets/" class="external-link">shinyWidgets</a></li>
 <li><a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a></li>
+<li><a href="https://rmarkdown.rstudio.com/" class="external-link">rmarkdown</a></li>
 <li><a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a></li>
 <li><a href="https://plotly.com/r/" class="external-link">plotly</a></li>
 <li><a href="https://bioconductor.org/packages/release/bioc/html/PCAtools.html" class="external-link">PCAtools</a></li>
@@ -154,11 +167,11 @@
 <div class="section level3">
 <h3 id="workshop-outline">Workshop Outline<a class="anchor" aria-label="anchor" href="#workshop-outline"></a>
 </h3>
-<p>This workshop was designed to be covered in ~2.5-3 hours and includes 4 hands-on modules (which have interactive documents that can be accessed via the links below for St. Jude members while on the St. Jude network):</p>
+<p>This workshop was designed to be covered in ~2.5-3 hours and includes 4 hands-on modules (<strong>which have interactive documents that can be accessed via the links below for St. Jude members while on the St. Jude network</strong>):</p>
 <table class="table">
 <colgroup>
-<col width="95%">
-<col width="4%">
+<col width="94%">
+<col width="5%">
 </colgroup>
 <thead><tr class="header">
 <th>Activity</th>
@@ -167,18 +180,14 @@
 <tbody>
 <tr class="odd">
 <td><a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/" class="external-link">Core Shiny Concepts</a></td>
-<td>30m</td>
+<td>45m</td>
 </tr>
 <tr class="even">
-<td><a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/" class="external-link">Basic Application Development</a></td>
-<td>30m</td>
+<td><a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/" class="external-link">Shiny Application Development</a></td>
+<td>75m</td>
 </tr>
 <tr class="odd">
-<td><a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/" class="external-link">Adding Complexity, Interactivity, and Generalizing an App</a></td>
-<td>90m</td>
-</tr>
-<tr class="even">
-<td><a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/" class="external-link">Debugging Shiny, Common Gotchas, and Deployment Options</a></td>
+<td><a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/" class="external-link">Common Gotchas, Debugging Shiny, and App Deployment</a></td>
 <td>30m</td>
 </tr>
 </tbody>
@@ -199,6 +208,7 @@
 </h3>
 <p>By the end of this workshop, participants should have:</p>
 <ul>
+<li>A basic understanding of how Shiny works and how to think in terms of reactivity.</li>
 <li>Basic experience with varied Shiny input/output types.</li>
 <li>The ability to create interactive plots via plotly and allow real-time user-customization of plot aesthetics/content.</li>
 <li>An idea as to how to develop an increasingly complex Shiny application to run &amp; explore PCA results.</li>
