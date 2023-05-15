@@ -99,7 +99,7 @@ Andrews</h4>
 TN<br><a class="author_email" href="mailto:#"></a><a href="mailto:jared.andrews@stjude.org" class="email">jared.andrews@stjude.org</a>
       </address>
                   
-            <h4 data-toc-skip class="date">May 12th, 2023</h4>
+            <h4 data-toc-skip class="date">May 14th, 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop/blob/HEAD/vignettes/Module1.ShinyConcepts.Rmd" class="external-link"><code>vignettes/Module1.ShinyConcepts.Rmd</code></a></small>
       <div class="hidden name"><code>Module1.ShinyConcepts.Rmd</code></div>
@@ -111,11 +111,11 @@ TN<br><a class="author_email" href="mailto:#"></a><a href="mailto:jared.andrews@
 <style type="text/css">
 // This is a CSS code chunk to make the page wider, as the default width is annoyingly narrow.
 body {
-  max-width: 1850px !important;
+  max-width: 1400px !important;
 }
 div.main-container {
-  max-width: 1850px !important;
-  width: 1850px !important;
+  max-width: 1400px !important;
+  width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -123,8 +123,8 @@ div.main-container {
   padding-right: 0px;
   padding-left: 0px;
   margin-left: 300px;
-  max-width: 1550px !important;
-  width: 1550px !important;
+  max-width: 1100px !important;
+  width: 1100px !important;
 }
 </style>
 <div class="section level2">
@@ -146,7 +146,8 @@ outputs automatically.</p></li>
 <li><p><strong>Flexible UI</strong>: Shiny provides a range of layout
 and UI elements out of the box, but also allows for extensive
 customization with HTML, CSS, and JavaScript if desired. Many additional
-packages are available to extend Shiny’s capabilities, like <a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>, <a href="https://rstudio.github.io/shinythemes/" class="external-link">shinythemes</a>, <a href="https://deanattali.com/shinyjs/" class="external-link">shinyjs</a>, and <a href="https://shinyapps.dreamrs.fr/shinyWidgets/" class="external-link">shinyWidgets</a>.</p></li>
+packages are available to extend Shiny’s potential layouts and UI
+elements, like <a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>, <a href="https://rstudio.github.io/shinythemes/" class="external-link">shinythemes</a>, <a href="https://deanattali.com/shinyjs/" class="external-link">shinyjs</a>, and <a href="https://shinyapps.dreamrs.fr/shinyWidgets/" class="external-link">shinyWidgets</a>.</p></li>
 <li><p><strong>Full R integration</strong>: Shiny apps are fully
 integrated with R, which means they can use any R package, function, or
 data structure.</p></li>
@@ -160,15 +161,32 @@ understanding of Shiny’s core concepts, as well as the skills to create
 and deploy your own Shiny apps. By the end of the workshop, you should
 be able to use Shiny to create interactive visualizations and dashboards
 using your own data.</p>
-<p>Where possible, we will use real-world scientific datasets to make
-the session more relevant.</p>
-<p>Remember, learning Shiny is not just about writing code, but also
-about thinking in terms of reactivity. This is a new way of programming
-for many, and it can take a bit of time to adjust. Don’t worry if you
-don’t understand everything immediately - with practice and patience, it
-will become second nature.</p>
-<p>Let’s get started with understanding the architecture of a Shiny
-app.</p>
+<div class="section level3">
+<h3 id="section-how-this-workshop-uses-shiny">
+<strong>How This Workshop Uses Shiny</strong><a class="anchor" aria-label="anchor" href="#section-how-this-workshop-uses-shiny"></a>
+</h3>
+<p>Nearly all of the content in this workshop is in the form of R
+markdown documents. You might think, “Hey, those aren’t Shiny apps, what
+gives?”</p>
+<p>And you’d be right, they aren’t Shiny apps, but they have no trouble
+running shiny apps provided you have the <code>runtime: shiny</code>
+line in the YAML of the document and are running the document in a live
+R environment (like RStudio or a server with R, which is likely how
+you’re viewing it).</p>
+<p>Using Shiny in this way allows us to create a more interactive
+learning experience, where you can run code and see the results in real
+time. And the code works just the same as a standalone app. The only
+difference is that we’ll use <code>options = list(height = 500)</code>
+to adjust the size of our Shiny apps rendered in the notebook so they
+fit better.</p>
+<p>Embedding Shiny apps in R markdown documents is a great way to mix
+analysis and viz with relevant contextual info (like explaining the data
+or experimental setup). These documents can also be easily shared with
+others, and can be run locally or on a server. We’ll get into more of
+that later.</p>
+<p>First, let’s get started with understanding the architecture of a
+Shiny app.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="section-understanding-shinys-architecture">Understanding Shiny’s Architecture<a class="anchor" aria-label="anchor" href="#section-understanding-shinys-architecture"></a>

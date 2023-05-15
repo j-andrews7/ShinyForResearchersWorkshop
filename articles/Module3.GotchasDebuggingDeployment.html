@@ -100,7 +100,7 @@ Andrews</h4>
 TN<br><a class="author_email" href="mailto:#"></a><a href="mailto:jared.andrews@stjude.org" class="email">jared.andrews@stjude.org</a>
       </address>
                   
-            <h4 data-toc-skip class="date">May 12th, 2023</h4>
+            <h4 data-toc-skip class="date">May 15th, 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop/blob/HEAD/vignettes/Module3.GotchasDebuggingDeployment.Rmd" class="external-link"><code>vignettes/Module3.GotchasDebuggingDeployment.Rmd</code></a></small>
       <div class="hidden name"><code>Module3.GotchasDebuggingDeployment.Rmd</code></div>
@@ -128,7 +128,7 @@ div.main-container {
   width: 1100px !important;
 }
 </style>
-<p><strong>St. Jude members may view <a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/" class="external-link">an
+<p><strong>St. Jude members may view <a href="https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/" class="external-link">an
 interactive form of this document here</a>.</strong> Must be connected
 to the St. Jude network to view.</p>
 <div class="section level2">
@@ -241,15 +241,21 @@ a few times.</p>
 <p>This is useful when you’re unsure of when and why your reactives are
 firing.</p>
 <ul>
-<li>
-<strong>The <code><a href="https://rdrr.io/pkg/shiny/man/reactiveConsole.html" class="external-link">reactiveConsole()</a></code> function:</strong> This
-one isn’t necessarily a debugging tool, but it’s useful for playing
+<li><p><strong>Chuck It at an LLM:</strong> Large language models (like
+chatGPT) trained on large amounts of code are often very good at finding
+bugs in code. They may not always have the fix right away, but they can
+often point you in the right direction. This is especially true with the
+latest models like GPT4. For more complex applications, you’ll still
+want to learn the above debugging tools, but for simple apps or singular
+functions, this can be a quick way to find bugs.</p></li>
+<li><p><strong>The <code><a href="https://rdrr.io/pkg/shiny/man/reactiveConsole.html" class="external-link">reactiveConsole()</a></code> function:</strong>
+This one isn’t necessarily a debugging tool, but it’s useful for playing
 around with reactives in the console. This function allows you to
 interactively run code that involves reactive values or expressions.
 Normally, you can’t do this because reactives only work within the
 correct reactive context. But when you call
 <code>reactiveConsole(TRUE)</code>, you can run this code directly from
-the console.</li>
+the console.</p></li>
 </ul>
 <p><strong>This is an experimental feature currently, but it’s useful
 for playing around with reactives in the console.</strong></p>
