@@ -765,6 +765,7 @@ library("airway")
 library("magrittr")
 library("DESeq2")
 library("org.Hs.eg.db")
+library("PCAtools")
 
 data("airway")
 airway$dex %<>% relevel("untrt")
@@ -795,8 +796,7 @@ vst <- vst[rowVars(vst) > 0, ]
 For the sake of time (which I am just assuming I will be running out of), here's how to run a PCA with PCAtools given our `vst` matrix and `airway` metadata.
 
 ```{r, message=FALSE, eval = FALSE}
-library("PCAtools")
-p <- pca(vst, metadata = colData(airway), removeVar = 0.1, scale = TRUE, center = TRUE)
+p <- pca(vst, metadata = colData(airway), removeVar = 0.5, scale = TRUE, center = TRUE)
 ```
 
 `scale` and `center` are optional arguments that scale and center the data prior to running the PCA.
