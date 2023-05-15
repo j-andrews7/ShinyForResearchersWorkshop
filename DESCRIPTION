@@ -21,7 +21,7 @@ Imports:
     plotly,
     PCAtools,
     shinyWidgets,
-    shinyjqui,
+    shinydashboard,
     shinyjs,
     reactlog,
     SummarizedExperiment,
