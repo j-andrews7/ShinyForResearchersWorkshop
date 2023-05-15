@@ -46,11 +46,11 @@ Must be connected to the St. Jude network to view.
 Before starting to code your Shiny app, it's important to sketch out the UI and think about how your data will be used. 
 This allows you to design the app in a way that best meets your users' needs.
 
-For instance, if we're designing a Shiny app to explore the a given dataset, we might want to allow users to:
+For instance, if we're designing a Shiny app to explore a given dataset, we might want to allow users to:
 
-- Select which variables to plot on the x and y axes
-- Choose the type of plot (scatterplot, histogram, etc.)
-- Color the points by species
+- Select which variables to plot on the x and y axes.
+- Choose the type of plot (scatterplot, histogram, etc.).
+- Color the points by a given variable.
 
 Given these needs, we can sketch out a UI that includes select inputs for the x and y variables, 
 the plot type, and the color, as well as a main panel for displaying the plot.
@@ -115,7 +115,7 @@ Whatever, just plan your app.
 ### An Example of Poor Planning
 
 Suppose we have a simple Shiny app that was originally designed to display a scatter plot for the iris dataset. 
-The UI contains two selectInput widgets for users to select the variables for the x and y axes of the scatter plot.
+The UI contains two `selectInput` widgets for users to select the variables for the x and y axes of the scatter plot.
 
 ```{r}
 library(shiny)
@@ -148,7 +148,7 @@ shinyApp(ui = ui, server = server, options = list(height = 550))
 ```
 
 Now, let's say we want to add a feature for users to display a histogram of a single variable. 
-We add a radioButton widget for users to select the plot type and a new selectInput for the histogram variable. 
+We add a `radioButton` widget for users to select the plot type and a new `selectInput` for the histogram variable. 
 We also modify the server function to render the plot based on the selected plot type.
 
 ```{r}
@@ -184,7 +184,7 @@ shinyApp(ui = ui, server = server, options = list(height = 550))
 
 While this code will work, it's not very clean or efficient. 
 The UI has become cluttered with inputs that don't apply to all plot types, 
-and the server function contains a big if-else statement that will become even more unwieldy if we decide to add more plot types in the future.
+and the server function contains an if-else statement that will become even more unwieldy if we decide to add more plot types in the future.
 
 If we had planned for the possibility of multiple plot types from the start, 
 we could have designed the UI and server in a way that more easily accommodates this feature, 

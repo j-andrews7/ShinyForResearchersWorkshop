@@ -58,12 +58,32 @@ This workshop is designed as an instructor-led, hybrid-format
 experience. The material will remain available online for self-paced
 learning indefinitely.
 
+### An Important Note About This Workshop
+
+Learning Shiny is not just about writing code, but also about thinking
+in terms of reactivity. This is a new way of programming for many, and
+it can take a bit of time to adjust.
+
+This workshop has a lot of content, and there’s no requirement that it
+all be covered in one session (or at all). The first two modules are the
+most important, so if taking an instructor-led workshop, *please* ask
+lots of questions.
+
+If leading a workshop with this material, care should be taken to move
+at whatever pace is necessary to make sure everyone understands the
+concepts in the first two modules before moving on.
+
+Don’t worry if you don’t understand everything perfectly, but if you’re
+finding yourself confused, please don’t hesitate to speak up.
+
 ### *R* / *Bioconductor* Packages Used
 
 This workshop utilizes the following packages:
 
 - [shiny](https://shiny.rstudio.com/)
+- [shinyWidgets](https://shinyapps.dreamrs.fr/shinyWidgets/)
 - [shinydashboard](https://rstudio.github.io/shinydashboard/)
+- [rmarkdown](https://rmarkdown.rstudio.com/)
 - [ggplot2](https://ggplot2.tidyverse.org/)
 - [plotly](https://plotly.com/r/)
 - [PCAtools](https://bioconductor.org/packages/release/bioc/html/PCAtools.html)
@@ -73,15 +93,15 @@ This workshop utilizes the following packages:
 ### Workshop Outline
 
 This workshop was designed to be covered in \~2.5-3 hours and includes 4
-hands-on modules (which have interactive documents that can be accessed
-via the links below for St. Jude members while on the St. Jude network):
+hands-on modules (**which have interactive documents that can be
+accessed via the links below for St. Jude members while on the St. Jude
+network**):
 
-| Activity                                                                                                             | Time |
-|----------------------------------------------------------------------------------------------------------------------|------|
-| [Core Shiny Concepts](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/)                                       | 30m  |
-| [Basic Application Development](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/)                             | 30m  |
-| [Adding Complexity, Interactivity, and Generalizing an App](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/) | 90m  |
-| [Debugging Shiny, Common Gotchas, and Deployment Options](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/)   | 30m  |
+| Activity                                                                                                       | Time |
+|----------------------------------------------------------------------------------------------------------------|------|
+| [Core Shiny Concepts](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/)                                 | 45m  |
+| [Shiny Application Development](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/)                       | 75m  |
+| [Common Gotchas, Debugging Shiny, and App Deployment](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/) | 30m  |
 
 ### Learning Goals
 
@@ -99,6 +119,8 @@ The goals of this workshop are for participants to:
 
 By the end of this workshop, participants should have:
 
+- A basic understanding of how Shiny works and how to think in terms of
+  reactivity.
 - Basic experience with varied Shiny input/output types.
 - The ability to create interactive plots via plotly and allow real-time
   user-customization of plot aesthetics/content.

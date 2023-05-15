@@ -1,5 +1,5 @@
 ---
-title: "Module 4 - Common Gotchas, Debugging Shiny, and Deployment Options"
+title: "Module 3 - Common Gotchas, Debugging Shiny, and App Deployment"
 author: 
 - name: "Jared Andrews"
   email: jared.andrews@stjude.org
@@ -13,7 +13,7 @@ output:
     toc_float: true	 
 runtime: shiny
 vignette: >
-  %\VignetteIndexEntry{Common Gotchas, Debugging Shiny, and Deployment Options}
+  %\VignetteIndexEntry{Common Gotchas, Debugging Shiny, and App Deployment}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
@@ -21,11 +21,11 @@ vignette: >
 ```{css, echo=FALSE}
 // This is a CSS code chunk to make the page wider, as the default width is annoyingly narrow.
 body {
-  max-width: 1850px !important;
+  max-width: 1400px !important;
 }
 div.main-container {
-  max-width: 1850px !important;
-  width: 1850px !important;
+  max-width: 1400px !important;
+  width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -33,10 +33,12 @@ div.main-container {
   padding-right: 0px;
   padding-left: 0px;
   margin-left: 300px;
-  max-width: 1550px !important;
-  width: 1550px !important;
+  max-width: 1100px !important;
+  width: 1100px !important;
 }
 ```
+
+
 
 **St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/).** 
 Must be connected to the St. Jude network to view.
@@ -79,6 +81,8 @@ You can step through your code line by line and examine the current state of var
 
 For example:
 ```{r, eval = FALSE}
+library(shiny)
+
 ui <- fluidPage(
     titlePanel("Debugging Shiny Apps"),
     sidebarLayout(
@@ -165,6 +169,8 @@ Here's a common "gotcha" scenario involving reactivity and debugging in R Shiny.
 Consider the following simple Shiny app:
 
 ```{r}
+library(shiny)
+
 ui <- fluidPage(
     textInput("inputText", "Enter some text:"),
     actionButton("goButton", "Go"),
@@ -179,7 +185,7 @@ server <- function(input, output) {
     })
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server, options = list(height = 200))
 ```
 
 In this app, the user is supposed to enter some text, then click the "Go" button to display the entered text. 
@@ -216,7 +222,7 @@ server <- function(input, output) {
     })
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server, options = list(height = 200))
 ```
 
 When you run this app, enter some text, and click the "Go" button, the app will pause and you'll be put into browser mode. 
@@ -265,7 +271,7 @@ server <- function(input, output) {
     })
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server, options = list(height = 200))
 ```
 
 </details>
@@ -273,7 +279,7 @@ shinyApp(ui = ui, server = server)
 2. Get rid of the `observeEvent` and check the value of `input$goButton` inside of `renderText`, again coupled with `isolate`.
   
 <details>
-  <summary>Solution 1</summary>
+  <summary>Solution 2</summary>
 
 ```{r}
 ui <- fluidPage(
@@ -293,7 +299,7 @@ server <- function(input, output) {
     })
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server, options = list(height = 200))
 ```
 
 </details>
@@ -306,9 +312,9 @@ The `isolate` function is used to prevent `input$inputText` from triggering reco
 This example illustrates a common misunderstanding about Shiny's reactivity model, and also demonstrates the kind of thinking required to debug a Shiny app. 
 Debugging in Shiny can be challenging because the code execution is event-driven and asynchronous, which is quite different from the usual top-to-bottom flow of an R script.
 
-## Deployment Options
+## App Deployment
 
-After you've built your Shiny application, the next step is to share it with the world. Or your lab.
+After you've built your Shiny application, the next step is to share it with the world. Or your lab/group.
 There are several ways to do this, ranging from simple and free solutions for small apps, 
 to more complex and robust methods for large-scale applications. 
 
@@ -360,3 +366,68 @@ However, once it's set up, it's very easy to deploy applications from RStudio.
 You can put in a serviceNow request to have a VM spun up and Posit Connect installed on it.
 
 - Making apps publically available is a bit more complicated than shinyapps.io, and St. Jude IT/legal has concerns if data is to be uploaded to the server.
+
+### Handling App Data
+
+When deploying a Shiny application, you can bundle data directly with the app. 
+This process involves including the data files in the same directory as the app itself. 
+
+Here's a general process for bundling data with a Shiny app:
+
+1. **Create a Data Folder:** Within your Shiny app project directory, create a separate folder (often named "data") to store your data files.
+
+2. **Add Data Files:** Copy your data files into this folder. These files can be in any format that R can read, such as CSV, RDS, or RData. 
+It's good practice to use relative paths when referencing these data files in your app.
+
+3. **Refer to Data Files:** In your Shiny app code, refer to these data files using relative paths. 
+For example, if you have a file named "mydata.csv" in a folder named "data", you would load it in R using something like read.csv("./data/mydata.csv").
+
+4. **Deploy the App:** When you deploy the app to shinyapps.io or Shiny Connect, all files in the app's directory, including the data files, are bundled and deployed together.
+
+5. **Access the Data:** Once deployed, the Shiny app can access the data files as if they were in the local environment because they are part of the deployed app. 
+However, remember that these are read-only. 
+If your app modifies the data, those modifications are lost at the end of the session unless saved to a persistent storage service like a database or cloud storage.
+
+This approach is great for smaller, static datasets. 
+However, if you have large datasets or if the data is updated frequently, 
+it would be better to store the data in a database or a cloud storage service, and have the Shiny app read the data from there.
+
+### More Advanced Data Handling
+
+The topics below are beyond the scope of this workshop, but they are useful to know about as you develop more complex Shiny applications.
+
+#### Sharing and Re-using Data with the `pins` Package
+
+The [pins](https://pins.rstudio.com/) package is a useful tool for pinning, discovering, and sharing resources. 
+It allows you to cache large datasets on services like Posit Connect or cloud storage services like AWS S3, Google Cloud Storage, Azure, Dropbox, or SharePoint. 
+This can be particularly useful for sharing large datasets or analyses across multiple Shiny applications and keeping said data in-sync.
+
+It can also be used to simply keep important data objects organized locally for your own use, or to share them easily with others.
+
+For more information, you can read the [Pins vignettes](https://pins.rstudio.com/articles/pins.html).
+
+#### Persistent Data Storage
+
+For apps that require persistent data storage, there are several R packages that can help. 
+The [DBI](https://db.rstudio.com/dbi/) package provides a common interface to communicate with databases from R, 
+and there are various DBI-compliant packages for specific types of databases, like [MySQL](https://solutions.posit.co/connections/db/databases/my-sql/), 
+[RSQLite](https://solutions.posit.co/connections/db/databases/sqlite/), and [RPostgres](https://solutions.posit.co/connections/db/databases/postgresql/). 
+
+[This application](https://daattali.com/shiny/persistent-data-storage/) also shows multiple ways to deal with persistent data storage in Shiny, along with code examples of each.
+[The associated article](https://shiny.posit.co/r/articles/build/persistent-data-storage/) provides more details.
+
+For a tutorial on using databases with Shiny, see this guide from RStudio.
+
+## Recap
+
+To summarize, this module covered:
+
+- **Common Gotchas and Debugging Challenges:** We discussed common "gotchas" for Shiny beginners, including issues with asynchronous code, reactivity, and complex UIs.
+We also covered the challenges of debugging Shiny apps.
+
+- **Debugging Shiny Apps:** We introduced some useful debugging tools like `browser()` and `reactlog()`, and walked through a debugging example.
+
+- **App Deployment:** We showed two ways to deploy Shiny apps: shinyapps.io and Posit Connect, and discussed the pros and cons of each.
+We also talked about how to bundle data with your Shiny app and mentioned ways to more easily share data objects with collaborators or multiple Shiny apps via the `pins` package.
+
+By the end of this module, participants should have an idea of where to start debugging their Shiny app and some of the unique challenges that debugging in Shiny presents.

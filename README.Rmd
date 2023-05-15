@@ -68,7 +68,9 @@ Don't worry if you don't understand everything perfectly, but if you're finding 
 This workshop utilizes the following packages:
 
 - [shiny](https://shiny.rstudio.com/)
+- [shinyWidgets](https://shinyapps.dreamrs.fr/shinyWidgets/)
 - [shinydashboard](https://rstudio.github.io/shinydashboard/)
+- [rmarkdown](https://rmarkdown.rstudio.com/)
 - [ggplot2](https://ggplot2.tidyverse.org/)
 - [plotly](https://plotly.com/r/)
 - [PCAtools](https://bioconductor.org/packages/release/bioc/html/PCAtools.html)
@@ -78,15 +80,13 @@ This workshop utilizes the following packages:
 ### Workshop Outline
 
 This workshop was designed to be covered in ~2.5-3 hours and includes 4 hands-on modules
-(which have interactive documents that can be accessed via the links below for St. Jude members while on the St. Jude network):
+(**which have interactive documents that can be accessed via the links below for St. Jude members while on the St. Jude network**):
 
 | Activity                  | Time |
 |---------------------------|------|
-| [Core Shiny Concepts](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/)                     | 30m  |
-| [Basic Application Development](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/)         | 30m  |
-| [Adding Complexity, Interactivity, and Generalizing an App](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/) | 90m   |
-| [Common Gotchas, Debugging Shiny, and Deployment Options](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule4/)               | 30m  |
-
+| [Core Shiny Concepts](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule1/)                     | 45m  |
+| [Shiny Application Development](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/)         | 75m  |
+| [Common Gotchas, Debugging Shiny, and App Deployment](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule3/)               | 30m  |
 
 
 ### Learning Goals
