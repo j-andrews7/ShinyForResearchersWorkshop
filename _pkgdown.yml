@@ -2,7 +2,7 @@ url: https://j-andrews7.github.io/ShinyForScientistsWorkshop
 
 template:
   params:
-    bootswatch: sandstone
+    bootswatch: flatly
     #ganalytics: UA-99999999-9
 
 home:

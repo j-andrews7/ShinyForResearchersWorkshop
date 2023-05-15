@@ -38,6 +38,12 @@ div.main-container {
 }
 ```
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  fig.path = "man/figures/"
+)
+```
+
 ## Overview
 
 **St. Jude members may view [an interactive form of this document here](https://svlpbakerlab01.stjude.org/ShinyWorkshopModule2/).** 
@@ -67,7 +73,7 @@ the plot type, and the color, as well as a main panel for displaying the plot.
 
 Or we can ask chatGPT to do it for us:
 
-
+<img align="center" src="man/figures/MockUI.PNG" alt="chatGPT-generated mock UI for this app" width="500" />
 
 ### This Ain't Art Class, Can't We Get to the Code Already?
 
