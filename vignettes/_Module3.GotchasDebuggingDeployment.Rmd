@@ -345,6 +345,10 @@ the number of applications you can deploy, and the resources each can use (e.g. 
 
 While shinyapps.io is great for small to medium-sized applications, for large-scale enterprise applications, you might need more control over your server environment.
 
+#### How to Deploy to Shinyapps.io
+
+The process is simple, and there are easy to follow instructions [here](https://docs.posit.co/shinyapps.io/getting-started.html#working-with-shiny-for-r).
+
 ### Posit Connect
 
 Posit Connect is a more commerical, professional publishing platform. 
@@ -371,6 +375,23 @@ However, once it's set up, it's very easy to deploy applications from RStudio.
 You can put in a serviceNow request to have a VM spun up and Posit Connect installed on it.
 
 - Making apps publically available is a bit more complicated than shinyapps.io, and St. Jude IT/legal has concerns if data is to be uploaded to the server.
+
+#### How to Deploy to Posit Connect
+
+This process is just a little more complicated than shinyapps.io.
+First, you need a Posit Connect server to which you have publishing permissions.
+
+At St. Jude, you can put in a ticket to have a Posit Connect server spun up for you. 
+They will provide you with a URL that you will login to with your St. Jude credentials.
+
+To publish to this server, you'll need to install the `rsconnect` package in RStudio. 
+
+You'll also need to connect your Posit account in RStudio, instructions for which are [here](https://docs.posit.co/how-to-guides/pre-tasks/connect-account/).
+
+Then, you can click the "Publish" button in the RStudio IDE to deploy your application to your server.
+
+When deploying the app, the app data and all packages used will be bundled and sent to the server.
+After deployment, you can control who can access the application through the settings on each piece of content.
 
 ### Handling App Data
 
