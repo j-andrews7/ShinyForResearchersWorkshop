@@ -794,7 +794,7 @@ vst <- vst[rowVars(vst) > 0, ]
 
 For the sake of time (which I am just assuming I will be running out of), here's how to run a PCA with PCAtools given our `vst` matrix and `airway` metadata.
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval = FALSE}
 library("PCAtools")
 p <- pca(vst, metadata = colData(airway), removeVar = 0.1, scale = TRUE, center = TRUE)
 ```
@@ -832,7 +832,7 @@ Expand the code block below to see one possible solution.
 <details>
   <summary>A Solution</summary>
 
-```{r class.source = 'fold-hide'}
+```{r}
 # Load required libraries
 library(shiny)
 library(PCAtools)
