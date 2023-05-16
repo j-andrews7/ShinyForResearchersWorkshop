@@ -93,7 +93,7 @@ This workshop utilizes the following packages:
 
 ### Workshop Outline
 
-This workshop was designed to be covered in \~2.5-3 hours and includes 4
+This workshop was designed to be covered in \~2.5-3 hours and includes 3
 hands-on modules (**which have interactive documents that can be
 accessed via the links below for St. Jude members while on the St. Jude
 network**):
