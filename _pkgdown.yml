@@ -1,4 +1,4 @@
-url: https://j-andrews7.github.io/ShinyForScientistsWorkshop
+url: https://j-andrews7.github.io/ShinyForResearchersWorkshop
 
 template:
   params:
@@ -6,13 +6,13 @@ template:
     #ganalytics: UA-99999999-9
 
 home:
-  title: "ShinyForScientistsWorkshop"
+  title: "ShinyForResearchersWorkshop"
   type: inverse
 
 
 navbar:
   right:
    - icon: fa-github
-     href: https://github.com/j-andrews7/ShinyForScientistsWorkshop
+     href: https://github.com/j-andrews7/ShinyForResearchersWorkshop
      
 

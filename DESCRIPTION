@@ -1,13 +1,13 @@
-Package: ShinyForScientistsWorkshop
-Title: Shiny For Scientists Workshop
-Version: 1.0.0
+Package: ShinyForResearchersWorkshop
+Title: Shiny For Researchers Workshop
+Version: 1.1.0
 Authors@R: 
     person(given = "Jared",
            family = "Andrews",
            role = c("aut", "cre"),
            email = "jared.andrews@stjude.org",
            comment = c(ORCID = "0000-0002-0780-6248"))
-Description: This package serves as an introduction to Shiny for scientists. 
+Description: This package serves as an introduction to Shiny for researchers of all varieties. 
     The package contains vignettes explaining the basics of Shiny, use cases, and how to create increasingly complex Shiny apps.
     It also includes an example for creating functions that generate Shiny apps for running and visualizing principal component analyses, made for embedding in Rmd documents or as a standalone app.
 License: MIT + file LICENSE
@@ -32,7 +32,7 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown
-URL: https://https://j-andrews7.github.io/ShinyForScientistsWorkshop/, https://github.com/j-andrews7/ShinyForScientistsWorkshop
-BugReports: https://github.com/j-andrews7/ShinyForScientistsWorkshop/issues/new/choose
+URL: https://https://j-andrews7.github.io/ShinyForResearchersWorkshop/, https://github.com/j-andrews7/ShinyForResearchersWorkshop
+BugReports: https://github.com/j-andrews7/ShinyForResearchersWorkshop/issues/new/choose
 VignetteBuilder: knitr
-DockerImage: ghcr.io/j-andrews7/shinyforscientistsworkshop:latest
+DockerImage: ghcr.io/j-andrews7/shinyforresearchersworkshop:latest

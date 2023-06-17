@@ -1,7 +1,7 @@
 
-# Shiny for Scientists Workshop <img align="right" src="man/figures/logo.png" alt="Learning Shiny" width="150" />
+# Shiny for Researchers Workshop <img align="right" src="man/figures/logo.png" alt="Learning Shiny" width="150" />
 
-Authors: Jared Andrews[^1] <br/> Last modified: May 15th, 2023.
+Authors: Jared Andrews[^1] <br/> Last modified: June 17th, 2023.
 
 ## Overview
 
@@ -13,9 +13,10 @@ can be used to create interactive, re-usable, and shareable web
 applications that can be used to explore and visualize data, and to
 create interactive reports.
 
-In particular, this curriculum is geared towards scientists and
+In particular, this curriculum is geared towards researchers of all fields, 
+scientists, clinicians, statisticians, and
 bioinformaticians to emphasize how Shiny can be *more* than a way for
-scientists to dig through data - it can be a powerful framework for
+researchers to dig through data - it can be a powerful framework for
 expert bioinformaticians to streamline figure generation and
 interpretation they’re doing themselves.
 
