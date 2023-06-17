@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShinyForScientistsWorkshop • ShinyForScientistsWorkshop</title>
+<title>ShinyForResearchersWorkshop • ShinyForResearchersWorkshop</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,11 +17,11 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="ShinyForScientistsWorkshop">
-<meta property="og:description" content="This package serves as an introduction to Shiny for scientists. 
+<script src="pkgdown.js"></script><meta property="og:title" content="ShinyForResearchersWorkshop">
+<meta property="og:description" content="This package serves as an introduction to Shiny for researchers of all varieties. 
     The package contains vignettes explaining the basics of Shiny, use cases, and how to create increasingly complex Shiny apps.
     It also includes an example for creating functions that generate Shiny apps for running and visualizing principal component analyses, made for embedding in Rmd documents or as a standalone app.">
-<meta property="og:image" content="https://j-andrews7.github.io/ShinyForScientistsWorkshop/logo.png">
+<meta property="og:image" content="https://j-andrews7.github.io/ShinyForResearchersWorkshop/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -41,8 +41,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">ShinyForScientistsWorkshop</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
+        <a class="navbar-link" href="index.html">ShinyForResearchersWorkshop</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop" class="external-link">
+  <a href="https://github.com/j-andrews7/ShinyForResearchersWorkshop" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -94,9 +94,9 @@
   <div class="contents col-md-9">
 
 <div class="section level1">
-<div class="page-header"><h1 id="shiny-for-scientists-workshop-">Shiny for Scientists Workshop <img align="right" src="reference/figures/logo.png" alt="Learning Shiny" width="150"><a class="anchor" aria-label="anchor" href="#shiny-for-scientists-workshop-"></a>
+<div class="page-header"><h1 id="shiny-for-researchers-workshop-">Shiny for Researchers Workshop <img align="right" src="reference/figures/logo.png" alt="Learning Shiny" width="150"><a class="anchor" aria-label="anchor" href="#shiny-for-researchers-workshop-"></a>
 </h1></div>
-<p>Authors: Jared Andrews<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <br> Last modified: May 15th, 2023.</p>
+<p>Authors: Jared Andrews<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <br> Last modified: June 17th, 2023.</p>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
@@ -104,7 +104,7 @@
 <h3 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
 </h3>
 <p>This workshop is designed to introduce participants to the basics of R Shiny, a web application framework for R. Shiny is a powerful tool that can be used to create interactive, re-usable, and shareable web applications that can be used to explore and visualize data, and to create interactive reports.</p>
-<p>In particular, this curriculum is geared towards scientists and bioinformaticians to emphasize how Shiny can be <em>more</em> than a way for scientists to dig through data - it can be a powerful framework for expert bioinformaticians to streamline figure generation and interpretation they’re doing themselves.</p>
+<p>In particular, this curriculum is geared towards researchers of all fields, scientists, clinicians, statisticians, and bioinformaticians to emphasize how Shiny can be <em>more</em> than a way for researchers to dig through data - it can be a powerful framework for expert bioinformaticians to streamline figure generation and interpretation they’re doing themselves.</p>
 </div>
 <div class="section level3">
 <h3 id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
@@ -239,8 +239,8 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/j-andrews7/ShinyForScientistsWorkshop/issues/new/choose" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/j-andrews7/ShinyForResearchersWorkshop/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/j-andrews7/ShinyForResearchersWorkshop/issues/new/choose" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -257,7 +257,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing ShinyForScientistsWorkshop</a></li>
+<li><a href="authors.html#citation">Citing ShinyForResearchersWorkshop</a></li>
 </ul>
 </div>
 
